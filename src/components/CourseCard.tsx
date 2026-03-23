@@ -1,109 +1,136 @@
 "use client";
-
 import { motion } from "framer-motion";
-import { CheckCircle, ArrowRight, Star } from "lucide-react";
+import { CheckCircle, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
 interface CourseCardProps {
-  badge: string;
-  title: string;
-  subtitle: string;
-  description: string;
+  standard: string;
+  board: string;
+  tagline: string;
+  subjects: string[];
   features: string[];
-  highlights: string[];
-  color: "navy" | "amber";
+  duration: string;
+  badge?: string;
+  accentColor?: "red" | "yellow" | "dark";
   delay?: number;
 }
 
 export default function CourseCard({
-  badge,
-  title,
-  subtitle,
-  description,
+  standard,
+  board,
+  tagline,
+  subjects,
   features,
-  highlights,
-  color,
+  duration,
+  badge,
+  accentColor = "red",
   delay = 0,
 }: CourseCardProps) {
-  const isNavy = color === "navy";
+  const styles = {
+    red: {
+      bg: "bg-primary-dark",
+      accent: "#FFD600",
+      badge: "bg-accent-yellow text-brand-black",
+      button: "bg-accent-yellow text-brand-black hover:bg-accent-golden",
+    },
+    yellow: {
+      bg: "bg-brand-black",
+      accent: "#E53935",
+      badge: "bg-primary text-white",
+      button: "bg-white text-brand-black hover:bg-gray-100",
+    },
+    dark: {
+      bg: "bg-[#1a1a2e]",
+      accent: "#FFD600",
+      badge: "bg-accent-yellow text-brand-black",
+      button: "bg-accent-yellow text-brand-black hover:bg-accent-golden",
+    },
+  };
+
+  const s = styles[accentColor];
 
   return (
     <motion.article
-      className={`relative rounded-2xl overflow-hidden group cursor-pointer ${
-        isNavy
-          ? "bg-gradient-to-br from-navy-900 to-blue-900"
-          : "bg-gradient-to-br from-amber-500 to-amber-600"
-      } shadow-xl`}
-      style={{
-        background: isNavy
-          ? "linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 100%)"
-          : "linear-gradient(135deg, #d97706 0%, #f59e0b 100%)",
-      }}
+      className={`relative rounded-2xl overflow-hidden ${s.bg} shadow-xl card-hover`}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-80px" }}
+      viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.6, delay, ease: "easeOut" }}
-      whileHover={{ y: -8, scale: 1.01 }}
     >
-      {/* Decorative Circle */}
-      <div
-        className="absolute -top-12 -right-12 w-48 h-48 rounded-full opacity-10"
-        style={{ backgroundColor: "white" }}
-      />
-      <div
-        className="absolute -bottom-8 -left-8 w-32 h-32 rounded-full opacity-10"
-        style={{ backgroundColor: "white" }}
-      />
+      {/* Decorative circles */}
+      <div className="absolute -top-10 -right-10 w-40 h-40 rounded-full bg-white/5" />
+      <div className="absolute -bottom-6 -left-6 w-24 h-24 rounded-full bg-white/5" />
 
-      <div className="relative p-8">
-        {/* Badge */}
-        <div className="inline-flex items-center gap-1.5 bg-white/20 backdrop-blur-sm text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-4">
-          <Star className="w-3 h-3 fill-current" />
-          {badge}
+      <div className="relative p-7">
+        {badge && (
+          <span
+            className={`inline-block font-heading font-bold text-xs px-3 py-1 rounded-full mb-4 ${s.badge}`}
+          >
+            {badge}
+          </span>
+        )}
+
+        <h3 className="font-heading font-black text-4xl text-white mb-0.5">
+          {standard}
+        </h3>
+        <p className="font-heading font-semibold text-white/60 text-sm mb-2">
+          {board}
+        </p>
+        <p className="font-body text-white/80 text-sm mb-5 leading-relaxed">
+          {tagline}
+        </p>
+
+        {/* Duration pill */}
+        <div
+          className="inline-flex items-center gap-1.5 text-xs font-heading font-semibold px-3 py-1.5 rounded-full mb-5"
+          style={{
+            backgroundColor: `${s.accent}20`,
+            color: s.accent,
+            border: `1px solid ${s.accent}40`,
+          }}
+        >
+          ⏱ {duration}
         </div>
 
-        {/* Title */}
-        <h3 className="text-3xl font-black text-white mb-1">{title}</h3>
-        <p className="text-white/80 font-semibold text-sm mb-3">{subtitle}</p>
-
-        {/* Description */}
-        <p className="text-white/70 text-sm leading-relaxed mb-6">{description}</p>
-
-        {/* Highlights Row */}
-        <div className="flex gap-3 mb-6">
-          {highlights.map((h) => (
-            <div
-              key={h}
-              className="flex-1 bg-white/10 backdrop-blur-sm rounded-xl p-3 text-center"
-            >
-              <p className="text-white font-bold text-sm">{h}</p>
-            </div>
-          ))}
+        {/* Subjects */}
+        <div className="mb-5">
+          <p className="font-heading font-semibold text-white/50 text-xs uppercase tracking-wider mb-2">
+            Subjects Covered
+          </p>
+          <div className="flex flex-wrap gap-2">
+            {subjects.map((sub) => (
+              <span
+                key={sub}
+                className="font-body text-xs px-2.5 py-1 rounded-lg bg-white/10 text-white/80"
+              >
+                {sub}
+              </span>
+            ))}
+          </div>
         </div>
 
         {/* Features */}
-        <ul className="space-y-2.5 mb-8">
+        <ul className="space-y-2 mb-7">
           {features.map((f) => (
-            <li key={f} className="flex items-start gap-2.5">
-              <CheckCircle className="w-4 h-4 text-white/80 mt-0.5 shrink-0 fill-white/20" />
-              <span className="text-white/85 text-sm">{f}</span>
+            <li key={f} className="flex items-start gap-2">
+              <CheckCircle
+                size={14}
+                className="mt-0.5 shrink-0"
+                style={{ color: s.accent }}
+              />
+              <span className="font-body text-white/75 text-sm">{f}</span>
             </li>
           ))}
         </ul>
 
         {/* CTA */}
-        <motion.a
-          href="#contact"
-          onClick={(e) => {
-            e.preventDefault();
-            document.querySelector("#contact")?.scrollIntoView({ behavior: "smooth" });
-          }}
-          className="flex items-center justify-center gap-2 w-full bg-white text-sm font-bold py-3.5 rounded-xl transition-all duration-200 hover:gap-3"
-          style={{ color: isNavy ? "#1e3a8a" : "#d97706" }}
-          whileTap={{ scale: 0.97 }}
+        <Link
+          href="/contact"
+          className={`flex items-center justify-center gap-2 w-full font-heading font-bold text-sm py-3.5 rounded-xl transition-all duration-200 hover:gap-3 ${s.button}`}
         >
           Book Free Demo
-          <ArrowRight className="w-4 h-4" />
-        </motion.a>
+          <ArrowRight size={15} />
+        </Link>
       </div>
     </motion.article>
   );

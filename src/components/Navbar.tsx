@@ -1,195 +1,143 @@
 "use client";
-
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, BookOpen, Phone } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
+import { Menu, X, Phone } from "lucide-react";
 
 const navLinks = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Courses", href: "#courses" },
-  { label: "Toppers", href: "#toppers" },
-  { label: "Contact", href: "#contact" },
+  { label: "Home", href: "/" },
+  { label: "About", href: "/about" },
+  { label: "Courses", href: "/courses" },
+  { label: "Results", href: "/results" },
+  { label: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const pathname = usePathname();
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const handleNavClick = (href: string) => {
+  useEffect(() => {
     setIsOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth" });
-  };
+  }, [pathname]);
 
   return (
-    <>
-      <header
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "bg-navy-900/95 backdrop-blur-md shadow-lg shadow-navy-900/20"
-            : "bg-transparent"
-        }`}
-        style={{ backgroundColor: scrolled ? "#1e3a8a" : undefined }}
-      >
-        <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16 md:h-20">
-            {/* Logo */}
-            <motion.a
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault();
-                handleNavClick("#home");
-              }}
-              className="flex items-center gap-2.5 group"
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="w-9 h-9 rounded-lg bg-amber-500 flex items-center justify-center group-hover:scale-105 transition-transform">
-                <BookOpen className="w-5 h-5 text-white" />
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 bg-primary-dark transition-shadow duration-300 ${
+        scrolled ? "shadow-xl" : ""
+      }`}
+    >
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 md:h-20">
+          {/* Logo */}
+          <Link href="/" className="flex items-center gap-3 shrink-0">
+            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-accent-yellow shrink-0">
+              <Image
+                src="/images/logo.jpeg"
+                alt="Excellent Coaching Classes"
+                width={40}
+                height={40}
+                className="object-cover w-full h-full"
+              />
+            </div>
+            <div className="leading-tight">
+              <div className="font-heading font-bold text-white text-sm md:text-base">
+                Excellent Coaching
               </div>
-              <div className="leading-tight">
-                <span className="block text-white font-bold text-base leading-none">
-                  Excellent
-                </span>
-                <span className="block text-amber-400 text-xs font-semibold tracking-wide">
-                  Coaching Classes
-                </span>
+              <div className="font-body text-accent-yellow text-xs hidden sm:block">
+                We Ensure All-Round Excellence
               </div>
-            </motion.a>
+            </div>
+          </Link>
 
-            {/* Desktop Nav */}
-            <motion.ul
-              className="hidden md:flex items-center gap-1"
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.1 }}
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex items-center gap-1">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={link.href}
+                  className={`px-4 py-2 font-heading font-semibold text-sm rounded-lg transition-colors duration-200 block ${
+                    pathname === link.href
+                      ? "text-accent-yellow bg-white/10"
+                      : "text-white hover:text-accent-yellow hover:bg-white/10"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* CTA + Phone */}
+          <div className="hidden md:flex items-center gap-4">
+            <a
+              href="tel:+919876543210"
+              className="flex items-center gap-1.5 text-white/80 hover:text-white transition-colors font-body text-sm"
             >
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <a
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(link.href);
-                    }}
-                    className="px-4 py-2 text-sm font-medium text-white/80 hover:text-white hover:bg-white/10 rounded-lg transition-all duration-200"
-                  >
-                    {link.label}
-                  </a>
-                </li>
-              ))}
-            </motion.ul>
+              <Phone size={15} />
+              <span>+91 98765 43210</span>
+            </a>
+            <Link
+              href="/contact"
+              className="bg-accent-yellow text-brand-black font-heading font-bold text-sm px-5 py-2.5 rounded-full hover:bg-accent-golden transition-colors duration-200"
+            >
+              Enroll Now
+            </Link>
+          </div>
 
-            {/* CTA + Mobile Toggle */}
-            <div className="flex items-center gap-3">
-              <motion.a
+          {/* Mobile Hamburger */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="md:hidden text-white p-2 rounded-lg hover:bg-white/10 transition-colors"
+            aria-label="Toggle menu"
+          >
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
+        </div>
+      </nav>
+
+      {/* Mobile Menu */}
+      {isOpen && (
+        <div className="md:hidden bg-primary-dark border-t border-red-900 px-4 py-4">
+          <div className="flex flex-col gap-1">
+            {navLinks.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className={`font-heading font-semibold text-base py-2.5 px-4 rounded-lg transition-colors ${
+                  pathname === link.href
+                    ? "text-accent-yellow bg-white/10"
+                    : "text-white hover:text-accent-yellow hover:bg-white/5"
+                }`}
+              >
+                {link.label}
+              </Link>
+            ))}
+            <div className="border-t border-red-900 mt-2 pt-3 flex flex-col gap-3">
+              <a
                 href="tel:+919876543210"
-                className="hidden md:flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-white text-sm font-semibold px-4 py-2 rounded-lg transition-colors duration-200"
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.5 }}
+                className="flex items-center gap-2 text-white/80 font-body text-sm px-4"
               >
-                <Phone className="w-4 h-4" />
-                Call Now
-              </motion.a>
-
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="md:hidden p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
-                aria-label="Toggle menu"
+                <Phone size={16} />
+                +91 98765 43210
+              </a>
+              <Link
+                href="/contact"
+                className="bg-accent-yellow text-brand-black font-heading font-bold text-center py-3 rounded-full"
               >
-                {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-              </button>
+                Enroll Now
+              </Link>
             </div>
           </div>
-        </nav>
-      </header>
-
-      {/* Mobile Drawer */}
-      <AnimatePresence>
-        {isOpen && (
-          <>
-            <motion.div
-              className="fixed inset-0 bg-black/60 z-40 md:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setIsOpen(false)}
-            />
-            <motion.div
-              className="fixed top-0 right-0 h-full w-72 z-50 md:hidden flex flex-col"
-              style={{ backgroundColor: "#1e3a8a" }}
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            >
-              {/* Drawer Header */}
-              <div className="flex items-center justify-between px-6 py-5 border-b border-white/10">
-                <div>
-                  <p className="text-white font-bold text-lg">Excellent</p>
-                  <p className="text-amber-400 text-xs font-semibold">Coaching Classes</p>
-                </div>
-                <button
-                  onClick={() => setIsOpen(false)}
-                  className="p-2 rounded-lg text-white hover:bg-white/10 transition-colors"
-                >
-                  <X className="w-5 h-5" />
-                </button>
-              </div>
-
-              {/* Drawer Links */}
-              <nav className="flex-1 px-4 py-6 space-y-1">
-                {navLinks.map((link, i) => (
-                  <motion.a
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleNavClick(link.href);
-                    }}
-                    className="flex items-center px-4 py-3 text-white/80 hover:text-white hover:bg-white/10 rounded-xl text-base font-medium transition-all"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: i * 0.06 }}
-                  >
-                    {link.label}
-                  </motion.a>
-                ))}
-              </nav>
-
-              {/* Drawer Footer CTA */}
-              <div className="px-4 pb-8 space-y-3">
-                <a
-                  href="tel:+919876543210"
-                  className="flex items-center justify-center gap-2 w-full bg-amber-500 hover:bg-amber-400 text-white font-semibold py-3 rounded-xl transition-colors"
-                >
-                  <Phone className="w-4 h-4" />
-                  Call Now
-                </a>
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick("#contact");
-                  }}
-                  className="flex items-center justify-center w-full border border-white/30 text-white hover:bg-white/10 font-semibold py-3 rounded-xl transition-colors"
-                >
-                  Book Free Demo
-                </a>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
-    </>
+        </div>
+      )}
+    </header>
   );
 }

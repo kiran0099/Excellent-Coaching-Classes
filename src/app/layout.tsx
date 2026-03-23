@@ -1,16 +1,33 @@
 import type { Metadata } from "next";
+import { Poppins, Roboto } from "next/font/google";
 import "./globals.css";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  variable: "--font-poppins",
+  display: "swap",
+});
+
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  variable: "--font-roboto",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
-  title: "Excellent Coaching Classes | SSC Tuition in Nalasopara East, Mumbai",
+  title: "Excellent Coaching Classes | We Ensure All-Round Excellence",
   description:
-    "Top-rated SSC coaching for Class 9th & 10th in Nalasopara East. Expert teachers, proven results, and personalized attention. Book a free demo today!",
+    "Top-rated coaching institute for 10th, 11th & 12th standard students in Nalasopara East, Mumbai. Expert faculty, proven results, and personalized attention.",
   keywords:
-    "coaching classes Nalasopara, SSC tuition Nalasopara East, Class 10 coaching Mumbai, Class 9 tuition Nalasopara, board exam preparation",
+    "coaching classes Nalasopara, 10th coaching Mumbai, 11th 12th tuition Nalasopara East, board exam preparation, SSC HSC coaching",
   openGraph: {
     title: "Excellent Coaching Classes | Nalasopara East",
-    description:
-      "Transforming Hard Work into Board Excellence. Top SSC coaching in Nalasopara East, Mumbai.",
+    description: "We Ensure All-Round Excellence — Top coaching for 10th, 11th & 12th in Nalasopara East, Mumbai.",
     type: "website",
     locale: "en_IN",
   },
@@ -23,19 +40,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap"
-          rel="stylesheet"
-        />
-      </head>
-      <body className="antialiased">{children}</body>
+      <body className={`${poppins.variable} ${roboto.variable} antialiased`}>
+        <Navbar />
+        <main>{children}</main>
+        <Footer />
+        <WhatsAppButton />
+      </body>
     </html>
   );
 }

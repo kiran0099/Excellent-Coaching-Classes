@@ -2,33 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Montserrat:wght@400;600;700;800;900&display=swap');
-
 @layer base {
   html {
     scroll-behavior: smooth;
   }
   body {
-    font-family: 'Inter', 'Montserrat', sans-serif;
-    @apply bg-white text-gray-900;
+    font-family: var(--font-roboto), sans-serif;
+    @apply bg-white text-brand-black;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-poppins), sans-serif;
   }
 }
 
 @layer utilities {
-  .text-gradient {
-    background: linear-gradient(135deg, #1e3a8a 0%, #1d4ed8 50%, #f59e0b 100%);
+  .text-gradient-red {
+    background: linear-gradient(135deg, #E53935 0%, #B71C1C 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
   }
+
   .hero-gradient {
-    background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 60%, #1d4ed8 100%);
+    background: linear-gradient(135deg, #B71C1C 0%, #E53935 60%, #212121 100%);
   }
+
   .card-hover {
-    transition: all 0.3s ease;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
+
   .card-hover:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 60px rgba(30, 58, 138, 0.2);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+  }
+
+  .section-pad {
+    @apply py-16 md:py-24;
+  }
+
+  .container-pad {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .btn-yellow {
+    @apply bg-accent-yellow text-brand-black font-heading font-bold px-6 py-3 rounded-full hover:bg-accent-golden transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .btn-white {
+    @apply bg-white text-primary font-heading font-bold px-6 py-3 rounded-full hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 border-2 border-white;
+  }
+
+  .btn-red {
+    @apply bg-primary text-white font-heading font-bold px-6 py-3 rounded-full hover:bg-primary-dark transition-all duration-200 inline-flex items-center gap-2;
+  }
+
+  .section-heading {
+    @apply font-heading font-bold text-3xl md:text-4xl text-brand-black mb-4;
+  }
+
+  .section-subheading {
+    @apply font-body text-brand-grey text-lg max-w-2xl mx-auto;
   }
 }

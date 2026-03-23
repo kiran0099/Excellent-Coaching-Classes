@@ -1,5 +1,4 @@
 "use client";
-
 import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { X, MessageCircle } from "lucide-react";
@@ -12,7 +11,6 @@ export default function WhatsAppButton() {
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">
-      {/* Tooltip */}
       <AnimatePresence>
         {showTooltip && (
           <motion.div
@@ -21,7 +19,7 @@ export default function WhatsAppButton() {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.9 }}
           >
-            <span className="text-sm font-semibold text-gray-700 whitespace-nowrap">
+            <span className="font-body text-sm font-semibold text-brand-black whitespace-nowrap">
               Chat for Free Demo!
             </span>
             <button
@@ -29,13 +27,12 @@ export default function WhatsAppButton() {
               className="text-gray-400 hover:text-gray-600 ml-1"
               aria-label="Close"
             >
-              <X className="w-3.5 h-3.5" />
+              <X size={14} />
             </button>
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Button */}
       <motion.a
         href={whatsappUrl}
         target="_blank"
@@ -49,8 +46,10 @@ export default function WhatsAppButton() {
         transition={{ type: "spring", stiffness: 260, damping: 20, delay: 1 }}
         aria-label="Chat on WhatsApp"
       >
-        {/* Pulse Ring */}
-        <span className="absolute inset-0 rounded-full animate-ping opacity-30" style={{ backgroundColor: "#25D366" }} />
+        <span
+          className="absolute inset-0 rounded-full animate-ping opacity-30"
+          style={{ backgroundColor: "#25D366" }}
+        />
         <MessageCircle className="w-7 h-7 text-white fill-white" />
       </motion.a>
     </div>

@@ -1,7 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cd \"D:/New Folder/Important/Excellance Classes/Website\" && npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git 2>&1)"
+      "Bash(cd \"D:/New Folder/Important/Excellance Classes/Website\" && npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir --import-alias \"@/*\" --no-git 2>&1)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npx next build 2>&1)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npm run dev)",
+      "Bash(taskkill /F /IM node.exe 2>&1)",
+      "Bash(taskkill //F //IM node.exe 2>&1)"
     ]
   }
 }
