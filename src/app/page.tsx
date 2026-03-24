@@ -46,7 +46,7 @@ const heroSlides = [
   },
   {
     image: "/images/hero/hero-2.jpg",
-    tag: "600+ Students Mentored · Since 2015",
+    tag: "1000+ Students Mentored · Since 2015",
     heading: "Join Our",
     highlight: "Growing",
     headingEnd: "Family.",
@@ -79,9 +79,9 @@ const heroSlides = [
 ];
 
 const stats = [
-  { value: "600+", label: "Students Mentored", icon: Users },
+  { value: "1000+", label: "Students Mentored", icon: Users },
   { value: "95%+", label: "Board Pass Rate", icon: TrendingUp },
-  { value: "8+", label: "Years of Excellence", icon: Award },
+  { value: "11+", label: "Years of Excellence", icon: Award },
   { value: "4.9★", label: "Parent Rating", icon: Star },
 ];
 
@@ -405,9 +405,10 @@ function HeroSlider() {
             priority={current === 0}
             sizes="100vw"
           />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/55 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+          {/* Dark overlay — stronger on mobile (full cover), subtle gradient on desktop */}
+          <div className="absolute inset-0 bg-black/60 md:bg-transparent" />
+          <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/80 via-black/55 to-black/30" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
         </motion.div>
       </AnimatePresence>
 
@@ -422,7 +423,7 @@ function HeroSlider() {
       />
 
       {/* ── Content ── */}
-      <div className="relative container-pad w-full py-20 md:py-28">
+      <div className="relative container-pad w-full py-16 md:py-28">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={`content-${current}`}
@@ -434,13 +435,13 @@ function HeroSlider() {
             className="max-w-3xl"
           >
             {/* Tag */}
-            <div className="inline-flex items-center gap-2 bg-white/10 border border-white/20 text-white/90 text-xs font-heading font-semibold px-4 py-2 rounded-full mb-6">
-              <MapPin size={13} />
-              {slide.tag}
+            <div className="inline-flex items-center gap-1.5 bg-white/15 border border-white/25 text-white text-[11px] sm:text-xs font-heading font-semibold px-3 py-1.5 rounded-full mb-4 md:mb-6 max-w-full truncate">
+              <MapPin size={11} className="shrink-0" />
+              <span className="truncate">{slide.tag}</span>
             </div>
 
             {/* Headline */}
-            <h1 className="font-heading font-black text-5xl md:text-6xl lg:text-7xl text-white leading-[1.08] mb-4">
+            <h1 className="font-heading font-black text-[2rem] sm:text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-3 md:mb-4">
               {slide.heading}{" "}
               <span
                 style={{
@@ -457,60 +458,65 @@ function HeroSlider() {
             </h1>
 
             {/* Sub */}
-            <p className="font-body text-white/75 text-lg md:text-xl leading-relaxed mb-10 max-w-xl">
+            <p className="font-body text-white/80 text-sm sm:text-base md:text-xl leading-relaxed mb-6 md:mb-10 max-w-xl">
               {slide.sub}
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-wrap gap-4 mb-10">
+            <div className="flex flex-col sm:flex-row gap-3 mb-6 md:mb-10">
               <Link
                 href="/contact"
-                className="btn-yellow text-base px-7 py-4 rounded-xl shadow-lg font-heading font-bold"
+                className="btn-yellow text-sm sm:text-base px-6 py-3 sm:py-4 rounded-xl shadow-lg font-heading font-bold text-center justify-center"
               >
                 Enroll Now
-                <ArrowRight size={18} />
+                <ArrowRight size={16} />
               </Link>
               <Link
                 href="/contact"
-                className="btn-white text-base px-7 py-4 rounded-xl font-heading font-bold"
+                className="btn-white text-sm sm:text-base px-6 py-3 sm:py-4 rounded-xl font-heading font-bold text-center justify-center"
               >
                 Book Free Demo
               </Link>
             </div>
 
             {/* Trust badges */}
-            <div className="flex flex-wrap gap-x-6 gap-y-3">
-              {["600+ Students Mentored", "95%+ Board Pass Rate", "8+ Years in Nalasopara"].map(
-                (badge) => (
-                  <div key={badge} className="flex items-center gap-2">
-                    <CheckCircle size={15} className="text-accent-yellow" />
-                    <span className="font-body text-white/80 text-sm">{badge}</span>
-                  </div>
-                )
-              )}
+            <div className="flex flex-col sm:flex-row flex-wrap gap-y-2 gap-x-5">
+              {[
+                { text: "1000+ Students", full: "1000+ Students Mentored" },
+                { text: "95%+ Pass Rate", full: "95%+ Board Pass Rate" },
+                { text: "11+ Years", full: "11+ Years in Nalasopara" },
+              ].map((badge) => (
+                <div key={badge.full} className="flex items-center gap-2">
+                  <CheckCircle size={14} className="text-accent-yellow shrink-0" />
+                  <span className="font-body text-white/85 text-xs sm:text-sm">
+                    <span className="sm:hidden">{badge.text}</span>
+                    <span className="hidden sm:inline">{badge.full}</span>
+                  </span>
+                </div>
+              ))}
             </div>
           </motion.div>
         </AnimatePresence>
       </div>
 
-      {/* ── Prev / Next arrows ── */}
+      {/* ── Prev / Next arrows — hidden on mobile, visible md+ ── */}
       <button
         onClick={prev}
         aria-label="Previous slide"
-        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 flex items-center justify-center text-white transition-all duration-200"
+        className="hidden md:flex absolute left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 items-center justify-center text-white transition-all duration-200"
       >
         <ChevronLeft size={22} />
       </button>
       <button
         onClick={next}
         aria-label="Next slide"
-        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 flex items-center justify-center text-white transition-all duration-200"
+        className="hidden md:flex absolute right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 items-center justify-center text-white transition-all duration-200"
       >
         <ChevronRight size={22} />
       </button>
 
       {/* ── Dot indicators ── */}
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex gap-2">
+      <div className="absolute bottom-8 md:bottom-12 left-1/2 -translate-x-1/2 z-20 flex gap-2">
         {heroSlides.map((_, i) => (
           <button
             key={i}
@@ -518,24 +524,15 @@ function HeroSlider() {
             aria-label={`Go to slide ${i + 1}`}
             className={`transition-all duration-300 rounded-full ${
               i === current
-                ? "w-8 h-2.5 bg-accent-yellow"
-                : "w-2.5 h-2.5 bg-white/40 hover:bg-white/70"
+                ? "w-7 h-2 bg-accent-yellow"
+                : "w-2 h-2 bg-white/40 hover:bg-white/70"
             }`}
           />
         ))}
       </div>
 
-      {/* ── Scroll indicator ── */}
-      <motion.div
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 z-20"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-      >
-        <ChevronDown size={28} className="text-white/40" />
-      </motion.div>
-
-      {/* ── Slide counter ── */}
-      <div className="absolute bottom-16 right-6 md:right-10 z-20 text-white/50 font-heading font-semibold text-sm">
+      {/* ── Slide counter — md+ only ── */}
+      <div className="hidden md:block absolute bottom-12 right-8 z-20 text-white/50 font-heading font-semibold text-sm">
         {String(current + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
       </div>
     </section>
@@ -663,7 +660,7 @@ export default function HomePage() {
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, duration: 0.5 }}
               >
-                <p className="font-heading font-black text-brand-black text-2xl leading-none">8+</p>
+                <p className="font-heading font-black text-brand-black text-2xl leading-none">11+</p>
                 <p className="font-heading font-bold text-brand-black text-xs">Years</p>
               </motion.div>
             </motion.div>

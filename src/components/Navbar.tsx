@@ -49,7 +49,7 @@ export default function Navbar() {
             </div>
             <div className="leading-tight">
               <div className="font-heading font-bold text-white text-sm md:text-base">
-                Excellent Coaching
+                Excellent Coaching Classes
               </div>
               <div className="font-body text-accent-yellow text-xs hidden sm:block">
                 We Ensure All-Round Excellence
