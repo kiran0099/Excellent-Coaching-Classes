@@ -1,0 +1,29 @@
+{
+  "years": [
+    {
+      "year": "2025",
+      "students": [
+        {          
+          "name": "Harshit Sawant",
+          "marks": "94.40%",
+          "image": "/images/toppers/2025/stud1.png"
+        },
+		{          
+          "name": "Vishwa Uphale",
+          "marks": "89.20%",
+          "image": "/images/toppers/2025/stud2.png"
+        },
+		{          
+          "name": "Saurabh Gupta",
+          "marks": "87.60%",
+          "image": "/images/toppers/2025/stud3.png"
+        },
+		{          
+          "name": "Vaishnavi Yadav",
+          "marks": "87.00%",
+          "image": "/images/toppers/2025/stud4.png"
+        }
+      ]
+    }
+  ]
+}

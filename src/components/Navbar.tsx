@@ -38,12 +38,12 @@ export default function Navbar() {
         <div className="flex items-center justify-between h-16 md:h-20">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-3 shrink-0">
-            <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-accent-yellow shrink-0">
+            <div className="w-14 h-14 rounded-full overflow-hidden border-2 border-accent-yellow shrink-0">
               <Image
                 src="/images/logo.jpeg"
                 alt="Excellent Coaching Classes"
-                width={40}
-                height={40}
+                width={56}
+                height={56}
                 className="object-cover w-full h-full"
               />
             </div>
