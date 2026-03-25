@@ -846,7 +846,7 @@ export default function HomePage() {
           fill
           className="object-cover"
         />
-        <div className="absolute inset-0 bg-brand-black/88" />
+        <div className="absolute inset-0" style={{ backgroundColor: "rgb(33 33 33 / 0.8)" }} />
 
         <div className="relative container-pad text-center">
           <motion.div
@@ -855,7 +855,7 @@ export default function HomePage() {
             whileInView="show"
             viewport={{ once: true }}
           >
-            <h2 className="font-heading font-black text-4xl md:text-5xl text-white mb-4 leading-tight">
+            <h2 className="font-heading font-black text-4xl md:text-5xl text-white mb-4 leading-tight drop-shadow-lg">
               Ready to Start Your
               <br />
               <span
@@ -869,9 +869,9 @@ export default function HomePage() {
                 Excellence Journey?
               </span>
             </h2>
-            <p className="font-body text-white/75 text-lg mb-8 max-w-lg mx-auto">
-              Book a <strong className="text-white">100% Free Demo Class</strong> today and
-              experience the Excellent Coaching difference.
+            <p className="font-body text-white text-lg mb-8 max-w-lg mx-auto">
+              Book a <strong className="text-accent-yellow">100% Free Demo Class</strong> today and
+              experience the Excellent Coaching Classes difference.
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
               <Link href="/contact" className="btn-yellow text-base px-8 py-4 rounded-full font-heading font-bold">

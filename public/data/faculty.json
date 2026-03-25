@@ -1,0 +1,50 @@
+[
+  {
+    "name": "Nishant Chaurasiya",
+    "desc": "M.A. English Literature, B.Ed with 10+ years of teaching experience. HSC Board Examiner for 7 years.",
+    "subjects": ["English"],
+    "image": "/images/faculty/fft1.png"
+  },
+  {
+    "name": "Roshni Sawant",
+    "desc": "B.A., B.Ed with 20 years of teaching experience.",
+    "subjects": ["Hindi", "Marathi"],
+    "image": "/images/faculty/fft2.png"
+  },
+  {
+    "name": "Sagar Vishwakarma",
+    "desc": "B.Sc (Chemistry), PGDM in Pharma & Healthcare. 10+ years experience teaching Science & Economics (Grades 8–12).",
+    "subjects": ["Economics", "Science 1", "Science 2", "English Grammar"],
+    "image": "/images/faculty/fft5.png"
+  },
+  {
+    "name": "Atul Vishwakarma",
+    "desc": "B.Com (Mumbai University), CA (Pursuing). 3+ years experience in Accounts & Mathematics.",
+    "subjects": ["Maths 1", "Maths 2", "Accounts"],
+    "image": "/images/faculty/fft3.png"
+  },
+  {
+    "name": "Suchita Vishwakarma",
+    "desc": "BAF (Mumbai University), PGDM Finance. 5+ years teaching Commerce students.",
+    "subjects": ["OCM", "SP"],
+    "image": "/images/faculty/fft4.png"
+  },
+  {
+    "name": "Siddharth Mishra",
+    "desc": "B.Sc IT, pursuing Masters in Data Science. 5+ years experience in Physics, IT, Maths & Science (Grades 8–10).",
+    "subjects": ["Physics", "Information Technology", "Maths"],
+    "image": "/images/faculty/fft6.png"
+  },
+  {
+    "name": "Kajal Rajak",
+    "desc": "B.Com (Mumbai University) with 5+ years teaching experience in primary and secondary sections.",
+    "subjects": ["Primary Section", "SP"],
+    "image": "/images/faculty/fft7.png"
+  },
+  {
+    "name": "Satendra Gupta",
+    "desc": "B.Com, B.Ed with 8+ years experience in Social Studies teaching.",
+    "subjects": ["Social Studies"],
+    "image": "/images/faculty/fft8.png"
+  }
+]
