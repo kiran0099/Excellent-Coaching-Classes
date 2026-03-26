@@ -13,7 +13,7 @@ const fadeUp = {
 
 const achievements = [
   { value: "1000+", label: "Students Mentored", icon: Users },
-  { value: "95%+", label: "Board Pass Rate", icon: TrendingUp },
+  { value: "100%", label: "Board Pass Rate", icon: TrendingUp },
   { value: "11+", label: "Years of Excellence", icon: Award },
   { value: "4.9★", label: "Parent Rating", icon: Star },
 ];
@@ -503,7 +503,7 @@ export default function AboutPage() {
               Our Team
             </span>
             <h2 className="font-heading font-black text-3xl md:text-4xl text-brand-black mb-3">
-              Meet Our <span className="text-gradient-red">Expert Faculty</span>
+              Meet Our <span className="text-gradient-red">11+ Years Experienced Faculty</span>
             </h2>
             <p className="font-body text-brand-grey text-lg max-w-xl mx-auto">
               Experienced, dedicated, and passionate about every student&apos;s

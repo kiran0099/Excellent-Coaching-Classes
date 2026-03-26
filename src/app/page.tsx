@@ -80,7 +80,7 @@ const heroSlides = [
 
 const stats = [
   { value: "1000+", label: "Students Mentored", icon: Users },
-  { value: "95%+", label: "Board Pass Rate", icon: TrendingUp },
+  { value: "100%", label: "Board Pass Rate", icon: TrendingUp },
   { value: "11+", label: "Years of Excellence", icon: Award },
   { value: "4.9★", label: "Parent Rating", icon: Star },
 ];
@@ -114,8 +114,8 @@ const RANK_CONFIG = [
 const whyUs = [
   {
     icon: <BookOpen size={22} className="text-primary" />,
-    title: "Expert Faculty",
-    desc: "Subject specialists with 5+ years of board exam coaching experience.",
+    title: "11+ Years Experience",
+    desc: "Subject specialists with 11+ years of board exam coaching experience.",
   },
   {
     icon: <Trophy size={22} className="text-primary" />,
@@ -140,7 +140,7 @@ const whyUs = [
   {
     icon: <MapPin size={22} className="text-primary" />,
     title: "Prime Location",
-    desc: "Conveniently located in Nalasopara East, easily accessible by all.",
+    desc: "Shop 1, Meera Apt, Opp. Rickshaw Stand, Vijay Nagar, Damodar Nagar, Nalasopara East — 401209.",
   },
 ];
 
@@ -150,16 +150,26 @@ const coursePreviews = [
     board: "SSC Maharashtra Board",
     tagline: "Master your boards with our result-proven SSC prep program.",
     subjects: ["Maths", "Science", "English", "SST", "Hindi"],
-    features: ["Full SSC syllabus", "Mock tests + previous papers", "Doubt clearing sessions"],
+    features: ["Full SSC syllabus", "Mock tests + previous papers", "Doubt clearing sessions","One on one sessions"],
     duration: "Full Academic Year",
     badge: "Most Popular",
     accentColor: "red" as const,
   },
   {
+    standard: "10th",
+    board: "CBSE Board",
+    tagline: "Score your best in CBSE boards with structured coaching & practice.",
+    subjects: ["Maths", "Science", "English", "Social Science", "Hindi"],
+    features: ["Full CBSE syllabus", "NCERT-based teaching", "Mock tests + sample papers", "Doubt clearing sessions"],
+    duration: "Full Academic Year",
+    badge: "CBSE",
+    accentColor: "dark" as const,
+  },
+  {
     standard: "11th",
-    board: "HSC Science / Commerce",
-    tagline: "Build a strong foundation for 12th boards and competitive exams.",
-    subjects: ["Physics", "Chemistry", "Maths", "Biology", "Accounts"],
+    board: "HSC Commerce",
+    tagline: "Build a strong foundation for 12th boards with our Commerce program.",
+    subjects: ["Accounts", "Economics", "Maths & Stats", "Org. of Commerce", "English"],
     features: ["Concept-first teaching", "NCERT + board curriculum", "Weak subject support"],
     duration: "Full Academic Year",
     badge: "Foundation",
@@ -167,9 +177,9 @@ const coursePreviews = [
   },
   {
     standard: "12th",
-    board: "HSC Science / Commerce",
+    board: "HSC Commerce",
     tagline: "Achieve your best board score with intensive coaching & strategy.",
-    subjects: ["Physics", "Chemistry", "Maths", "Biology", "Accounts"],
+    subjects: ["Accounts", "Economics", "Maths & Stats", "Org. of Commerce", "English"],
     features: ["Board-focused strategy", "Intensive revision batches", "Score guarantee"],
     duration: "Full Academic Year",
     badge: "Board Champion",
@@ -202,7 +212,7 @@ function HallOfFame() {
         const match = data.years.find(
           (y: { year: string; students: Topper[] }) => y.year === String(resultYear)
         );
-        // Fallback to the most recent year if exact match not found
+        // Fallback to the most recent year if current year data not available
         const entry = match ?? data.years[data.years.length - 1];
         setToppers(entry?.students ?? []);
       })
@@ -483,7 +493,7 @@ function HeroSlider() {
             <div className="flex flex-col sm:flex-row flex-wrap gap-y-2 gap-x-5">
               {[
                 { text: "1000+ Students", full: "1000+ Students Mentored" },
-                { text: "95%+ Pass Rate", full: "95%+ Board Pass Rate" },
+                { text: "100% Pass Rate", full: "100% Board Pass Rate" },
                 { text: "11+ Years", full: "11+ Years in Nalasopara" },
               ].map((badge) => (
                 <div key={badge.full} className="flex items-center gap-2">
@@ -748,13 +758,13 @@ export default function HomePage() {
             </p>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-7">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
             {coursePreviews.map((course, i) => (
               <CourseCard key={course.standard} {...course} delay={i * 0.15} />
             ))}
           </div>
 
-          <div className="text-center mt-10">
+          <div className="flex justify-center mt-10">
             <Link href="/courses" className="btn-red text-sm px-6 py-3 rounded-full font-heading font-bold">
               View All Course Details
               <ArrowRight size={16} />

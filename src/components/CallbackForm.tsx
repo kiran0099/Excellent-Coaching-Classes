@@ -126,8 +126,9 @@ export default function CallbackForm() {
                 >
                   <option value="">Select class</option>
                   <option value="10">Class 10th (SSC Board)</option>
-                  <option value="11">Class 11th (Science / Commerce)</option>
-                  <option value="12">Class 12th (Science / Commerce)</option>
+                  <option value="10cbse">Class 10th (CBSE Board)</option>
+                  <option value="11">Class 11th (Commerce)</option>
+                  <option value="12">Class 12th (Commerce)</option>
                 </select>
               </div>
               {errors.studentClass && (

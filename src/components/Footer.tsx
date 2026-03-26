@@ -74,9 +74,11 @@ export default function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin size={15} className="text-accent-yellow mt-0.5 shrink-0" />
                 <span className="font-body text-gray-400 text-sm leading-relaxed">
-                  Opp. Vijay Nagar Rickshaw Stand,
+                  Shop 1, Meera Apt, Opp. Rickshaw Stand,
                   <br />
-                  Nalasopara East, Mumbai
+                  Vijay Nagar, Damodar Nagar,
+                  <br />
+                  Nalasopara East, Vasai-Virar — 401209
                 </span>
               </li>
               <li className="flex items-start gap-3">

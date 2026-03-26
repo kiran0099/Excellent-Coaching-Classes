@@ -45,15 +45,15 @@
   }
 
   .btn-yellow {
-    @apply bg-accent-yellow text-brand-black font-heading font-bold px-6 py-3 rounded-full hover:bg-accent-golden transition-all duration-200 inline-flex items-center gap-2;
+    @apply bg-accent-yellow text-brand-black font-heading font-bold px-6 py-3 rounded-full hover:bg-accent-golden transition-all duration-200 inline-flex items-center justify-center gap-2 leading-none;
   }
 
   .btn-white {
-    @apply bg-white text-primary font-heading font-bold px-6 py-3 rounded-full hover:bg-gray-100 transition-all duration-200 inline-flex items-center gap-2 border-2 border-white;
+    @apply bg-white text-primary font-heading font-bold px-6 py-3 rounded-full hover:bg-gray-100 transition-all duration-200 inline-flex items-center justify-center gap-2 leading-none border-2 border-white;
   }
 
   .btn-red {
-    @apply bg-primary text-white font-heading font-bold px-6 py-3 rounded-full hover:bg-primary-dark transition-all duration-200 inline-flex items-center gap-2;
+    @apply bg-primary text-white font-heading font-bold px-6 py-3 rounded-full hover:bg-primary-dark transition-all duration-200 inline-flex items-center justify-center gap-2 leading-none;
   }
 
   .section-heading {

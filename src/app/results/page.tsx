@@ -2,50 +2,61 @@
 import { motion } from "framer-motion";
 import { Trophy, Star, ArrowRight } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
+import { useEffect, useState } from "react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
   show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
 
-const results = {
-  "2024": [
-    { name: "Priya Sharma", percentage: "96.4%", standard: "10th SSC", rank: 1, initials: "PS", highlight: true },
-    { name: "Rahul Patil", percentage: "94.8%", standard: "12th Science", rank: 2, initials: "RP", highlight: true },
-    { name: "Sneha Verma", percentage: "93.2%", standard: "10th SSC", rank: 3, initials: "SV", highlight: true },
-    { name: "Arjun Nair", percentage: "92.6%", standard: "12th Commerce", rank: 4, initials: "AN", highlight: false },
-    { name: "Anjali Singh", percentage: "91.8%", standard: "11th Science", rank: 5, initials: "AS", highlight: false },
-    { name: "Rohit Kumar", percentage: "90.5%", standard: "10th SSC", rank: 6, initials: "RK", highlight: false },
-    { name: "Pooja Mehta", percentage: "89.7%", standard: "12th Commerce", rank: 7, initials: "PM", highlight: false },
-    { name: "Dev Shah", percentage: "88.9%", standard: "10th SSC", rank: 8, initials: "DS", highlight: false },
-  ],
-  "2023": [
-    { name: "Kavya Mehta", percentage: "95.2%", standard: "10th SSC", rank: 1, initials: "KM", highlight: true },
-    { name: "Siddharth Joshi", percentage: "93.8%", standard: "12th Science", rank: 2, initials: "SJ", highlight: true },
-    { name: "Pooja Rao", percentage: "92.1%", standard: "10th SSC", rank: 3, initials: "PR", highlight: true },
-    { name: "Aditya Shah", percentage: "91.5%", standard: "12th Commerce", rank: 4, initials: "AS", highlight: false },
-    { name: "Nikita Patil", percentage: "90.3%", standard: "11th Science", rank: 5, initials: "NP", highlight: false },
-    { name: "Vikas Nair", percentage: "89.6%", standard: "10th SSC", rank: 6, initials: "VN", highlight: false },
-  ],
-  "2022": [
-    { name: "Riya Desai", percentage: "94.6%", standard: "10th SSC", rank: 1, initials: "RD", highlight: true },
-    { name: "Akash Sharma", percentage: "92.3%", standard: "12th Science", rank: 2, initials: "AS", highlight: true },
-    { name: "Meena Patil", percentage: "91.0%", standard: "10th SSC", rank: 3, initials: "MP", highlight: true },
-    { name: "Suraj Kumar", percentage: "89.8%", standard: "12th Commerce", rank: 4, initials: "SK", highlight: false },
-    { name: "Pallavi Verma", percentage: "88.4%", standard: "10th SSC", rank: 5, initials: "PV", highlight: false },
-  ],
-};
-
 const overallStats = [
-  { value: "95%+", label: "Board Pass Rate (All Years)" },
+  { value: "100%", label: "Board Pass Rate (All Years)" },
   { value: "50+", label: "Students with 90%+ Marks" },
   { value: "3", label: "District Toppers" },
   { value: "100%", label: "Students Appear in Boards" },
 ];
 
 const rankMedals = ["🥇", "🥈", "🥉"];
+const RANK_COLORS = ["#D4A017", "#A8A8B3", "#CD7F32", "#CC0000"];
+
+// Alternating photo background colors
+const PHOTO_BG = [
+  "#B71C1C", // deep red
+  "#1a237e", // deep blue
+  "#1b5e20", // deep green
+  "#4a148c", // deep purple
+];
+
+interface Topper {
+  name: string;
+  marks: string;
+  image: string;
+  board: string;
+}
+
+interface YearEntry {
+  year: string;
+  students: Topper[];
+}
 
 export default function ResultsPage() {
+  const [years, setYears] = useState<YearEntry[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/data/toppersdata.json")
+      .then((r) => r.json())
+      .then((data) => {
+        // Sort descending by year
+        const sorted: YearEntry[] = [...data.years].sort(
+          (a, b) => Number(b.year) - Number(a.year)
+        );
+        setYears(sorted);
+      })
+      .finally(() => setLoading(false));
+  }, []);
+
   return (
     <>
       {/* ── PAGE HEADER ───────────────────────────────────── */}
@@ -61,7 +72,7 @@ export default function ResultsPage() {
               Hall of Fame
             </span>
             <h1 className="font-heading font-black text-4xl md:text-5xl text-white mb-4">
-              Our Students'{" "}
+              Our Students&apos;{" "}
               <span
                 style={{
                   background: "linear-gradient(90deg, #FFD600, #FFC107)",
@@ -106,94 +117,99 @@ export default function ResultsPage() {
       {/* ── YEAR-WISE RESULTS ─────────────────────────────── */}
       <section className="section-pad bg-brand-lightgrey">
         <div className="container-pad">
-          {Object.entries(results).map(([year, students], yearIndex) => (
-            <motion.div
-              key={year}
-              className="mb-16 last:mb-0"
-              variants={fadeUp}
-              initial="hidden"
-              whileInView="show"
-              viewport={{ once: true }}
-              transition={{ delay: yearIndex * 0.1 }}
-            >
-              {/* Year Header */}
-              <div className="flex items-center gap-4 mb-8">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
-                    <Trophy size={20} className="text-accent-yellow" />
-                  </div>
-                  <div>
-                    <h2 className="font-heading font-black text-3xl text-brand-black">
-                      Results {year}
-                    </h2>
-                    <p className="font-body text-brand-grey text-sm">
-                      Board Exam Toppers &amp; Achievers
-                    </p>
-                  </div>
-                </div>
-                <div className="h-px flex-1 bg-gray-200 hidden md:block" />
-                <span className="font-body text-brand-grey text-sm hidden md:block">
-                  {students.length} achievers
-                </span>
-              </div>
-
-              {/* Top 3 highlight */}
-              <div className="grid sm:grid-cols-3 gap-5 mb-6">
-                {students.slice(0, 3).map((student, i) => (
-                  <motion.article
-                    key={student.name}
-                    className="relative bg-primary-dark rounded-2xl overflow-hidden shadow-lg"
-                    whileHover={{ y: -4 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {/* Decorative */}
-                    <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/5" />
-
-                    <div className="p-6 relative">
-                      <span className="text-3xl mb-3 block">{rankMedals[i]}</span>
-                      <div className="w-14 h-14 rounded-2xl bg-white/20 flex items-center justify-center font-heading font-black text-xl text-white mb-3">
-                        {student.initials}
-                      </div>
-                      <div className="font-heading font-black text-3xl text-accent-yellow mb-1">
-                        {student.percentage}
-                      </div>
-                      <p className="font-heading font-bold text-white text-sm">{student.name}</p>
-                      <p className="font-body text-white/60 text-xs mt-0.5">{student.standard}</p>
+          {loading ? (
+            <div className="flex justify-center items-center h-48">
+              <div className="w-10 h-10 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
+            </div>
+          ) : (
+            years.map((entry, yearIndex) => (
+              <motion.div
+                key={entry.year}
+                className="mb-16 last:mb-0"
+                variants={fadeUp}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true }}
+                transition={{ delay: yearIndex * 0.1 }}
+              >
+                {/* Year Header */}
+                <div className="flex items-center gap-4 mb-8">
+                  <div className="flex items-center gap-3">
+                    <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
+                      <Trophy size={20} className="text-accent-yellow" />
                     </div>
-                  </motion.article>
-                ))}
-              </div>
-
-              {/* Remaining students */}
-              {students.length > 3 && (
-                <div className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-                  {students.slice(3).map((student) => (
-                    <motion.article
-                      key={student.name}
-                      className="bg-white rounded-xl p-4 border border-gray-100 shadow-sm card-hover flex items-center gap-3"
-                      variants={fadeUp}
-                      initial="hidden"
-                      whileInView="show"
-                      viewport={{ once: true }}
-                    >
-                      <div className="w-10 h-10 rounded-xl bg-red-50 flex items-center justify-center font-heading font-bold text-primary text-sm shrink-0">
-                        {student.initials}
-                      </div>
-                      <div className="min-w-0">
-                        <p className="font-heading font-bold text-brand-black text-xs truncate">
-                          {student.name}
-                        </p>
-                        <p className="font-heading font-black text-primary text-sm">
-                          {student.percentage}
-                        </p>
-                        <p className="font-body text-brand-grey text-xs">{student.standard}</p>
-                      </div>
-                    </motion.article>
-                  ))}
+                    <div>
+                      <h2 className="font-heading font-black text-3xl text-brand-black">
+                        Results {entry.year}
+                      </h2>
+                      <p className="font-body text-brand-grey text-sm">
+                        Board Exam Toppers &amp; Achievers
+                      </p>
+                    </div>
+                  </div>
+                  <div className="h-px flex-1 bg-gray-200 hidden md:block" />
+                  <span className="font-body text-brand-grey text-sm hidden md:block">
+                    {entry.students.length} achievers
+                  </span>
                 </div>
-              )}
-            </motion.div>
-          ))}
+
+                {/* Toppers grid */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+                  {entry.students.map((student, i) => {
+                    const color = RANK_COLORS[i] ?? RANK_COLORS[RANK_COLORS.length - 1];
+                    const photoBg = PHOTO_BG[i % PHOTO_BG.length];
+                    return (
+                      <motion.article
+                        key={student.name}
+                        className="relative bg-[#2b2d42] rounded-2xl overflow-hidden shadow-lg border-2"
+                        style={{ borderColor: color + "66" }}
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: i * 0.1, duration: 0.5 }}
+                        whileHover={{ y: -4 }}
+                      >
+                        {/* Rank badge */}
+                        <div
+                          className="absolute top-3 left-3 z-10 w-8 h-8 rounded-full flex items-center justify-center font-heading font-black text-xs shadow"
+                          style={{ background: color, color: "#111" }}
+                        >
+                          {i < 3 ? rankMedals[i] : `${i + 1}`}
+                        </div>
+
+                        {/* Photo */}
+                        <div className="relative w-full aspect-square" style={{ backgroundColor: photoBg }}>
+                          <Image
+                            src={student.image}
+                            alt={student.name}
+                            fill
+                            className="object-cover object-top"
+                            sizes="(max-width: 640px) 50vw, 25vw"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                        </div>
+
+                        <div className="p-4">
+                          <div
+                            className="font-heading font-black text-3xl leading-none mb-1"
+                            style={{ color }}
+                          >
+                            {student.marks}
+                          </div>
+                          <p className="font-heading font-bold text-white text-sm leading-tight mb-1">
+                            {student.name}
+                          </p>
+                          <span className="font-body text-xs bg-white/10 text-white/70 px-2 py-0.5 rounded-full">
+                            {student.board}
+                          </span>
+                        </div>
+                      </motion.article>
+                    );
+                  })}
+                </div>
+              </motion.div>
+            ))
+          )}
         </div>
       </section>
 
@@ -216,25 +232,25 @@ export default function ResultsPage() {
           <div className="grid md:grid-cols-3 gap-6">
             {[
               {
-                name: "Priya Sharma",
-                score: "96.4% — 10th SSC 2024",
+                name: "Harshit Sawant",
+                score: "94.40% — 10th SSC 2025",
                 quote:
                   "The way complex problems were broken down here completely changed my approach to Maths. I never thought I could score this high!",
-                initials: "PS",
+                initials: "HS",
               },
               {
-                name: "Kavya Mehta",
-                score: "95.2% — 10th SSC 2023",
+                name: "Shagun Gupta",
+                score: "93.40% — 10th SSC 2024",
                 quote:
                   "The mock tests were exactly like the real exam. By the time I sat for boards, I was completely calm and confident. Thank you Excellent Coaching!",
-                initials: "KM",
+                initials: "SG",
               },
               {
-                name: "Siddharth Joshi",
-                score: "93.8% — 12th Science 2023",
+                name: "Nishita Shetty",
+                score: "94.00% — 10th SSC 2023",
                 quote:
-                  "The faculty here treats every student like family. They never gave up on me even when I was struggling in Physics. Pure dedication!",
-                initials: "SJ",
+                  "The faculty here treats every student like family. They never gave up on me even when I was struggling. Pure dedication!",
+                initials: "NS",
               },
             ].map((t, i) => (
               <motion.article

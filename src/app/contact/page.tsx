@@ -22,9 +22,9 @@ const contactInfo = [
     icon: <MapPin size={22} className="text-white" />,
     title: "Our Address",
     lines: [
-      "Opp. Vijay Nagar Rickshaw Stand,",
-      "Nalasopara East, Mumbai",
-      "Maharashtra — 401209",
+      "Shop 1, Meera Apt, Opp. Rickshaw Stand,",
+      "Vijay Nagar, Damodar Nagar,",
+      "Nalasopara East, Vasai-Virar — 401209",
     ],
     sub: "Easily accessible by auto/bus",
     href: null,
@@ -181,9 +181,11 @@ export default function ContactPage() {
                     Visit Us
                   </p>
                   <p className="font-body text-brand-grey text-sm leading-relaxed">
-                    Opp. Vijay Nagar Rickshaw Stand,
+                    Shop 1, Meera Apt, Opp. Rickshaw Stand,
                     <br />
-                    Nalasopara East, Mumbai — 401209
+                    Vijay Nagar, Damodar Nagar,
+                    <br />
+                    Nalasopara East, Vasai-Virar — 401209
                   </p>
                 </div>
               </div>
@@ -217,7 +219,7 @@ export default function ContactPage() {
               Find Us on the Map
             </h2>
             <p className="font-body text-brand-grey text-sm mt-1">
-              Opp. Vijay Nagar Rickshaw Stand, Nalasopara East, Mumbai
+              Shop 1, Meera Apt, Opp. Rickshaw Stand, Vijay Nagar, Damodar Nagar, Nalasopara East, Vasai-Virar — 401209
             </p>
           </motion.div>
 
@@ -229,7 +231,7 @@ export default function ContactPage() {
             viewport={{ once: true }}
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.7490897019944!2d72.82047097525778!3d19.42035108186247!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7a9c4afd3c7b1%3A0x9bc0f72bf2db2ded!2sNalasopara%20East%2C%20Palghar%2C%20Maharashtra!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60191.669968992835!2d72.76156105747002!3d19.456456120577517!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7a9d14a1b1957%3A0x9731a29b0093d874!2sExcellent%20Coaching%20Classes!5e0!3m2!1sen!2sin!4v1774546179556!5m2!1sen!2sin"
               width="100%"
               height="400"
               style={{ border: 0 }}

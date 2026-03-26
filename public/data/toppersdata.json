@@ -3,25 +3,87 @@
     {
       "year": "2025",
       "students": [
-        {          
+        {
           "name": "Harshit Sawant",
           "marks": "94.40%",
-          "image": "/images/toppers/2025/stud1.png"
+          "image": "/images/toppers/2025/stud1.png",
+          "board":"SSC"
         },
-		{          
+        {
           "name": "Vishwa Uphale",
           "marks": "89.20%",
-          "image": "/images/toppers/2025/stud2.png"
+          "image": "/images/toppers/2025/stud2.png",
+          "board":"SSC"
         },
-		{          
+        {
           "name": "Saurabh Gupta",
           "marks": "87.60%",
-          "image": "/images/toppers/2025/stud3.png"
+          "image": "/images/toppers/2025/stud3.png",
+          "board":"SSC"
         },
-		{          
+        {
           "name": "Vaishnavi Yadav",
           "marks": "87.00%",
-          "image": "/images/toppers/2025/stud4.png"
+          "image": "/images/toppers/2025/stud4.png",
+          "board":"SSC"
+        }
+      ]
+    },
+    {
+      "year": "2024",
+      "students": [
+        {
+          "name": "Shagun Gupta",
+          "marks": "93.40%",
+          "image": "/images/toppers/2024/stud1.png",
+          "board":"SSC"
+        },
+        {
+          "name": "Priya Yadav",
+          "marks": "90.20%",
+          "image": "/images/toppers/2024/stud2.png",
+          "board":"SSC"
+        },
+        {
+          "name": "Vishal Dixit",
+          "marks": "85.60%",
+          "image": "/images/toppers/2024/stud3.png",
+          "board":"SSC"
+        },
+        {
+          "name": "Vanisha Gupta",
+          "marks": "85.00%",
+          "image": "/images/toppers/2024/stud4.png",
+          "board":"SSC"
+        }
+      ]
+    },
+    {
+      "year": "2023",
+      "students": [
+        {
+          "name": "Nishita Shetty",
+          "marks": "94.00%",
+          "image": "/images/toppers/2024/stud3.png",
+          "board":"SSC"
+        },
+        {
+          "name": "Vinayak Gupta",
+          "marks": "88.00%",
+          "image": "/images/toppers/2024/stud2.png",
+          "board":"SSC"
+        },
+        {
+          "name": "Kahish Gupta",
+          "marks": "84.80%",
+          "image": "/images/toppers/2024/stud1.png",
+          "board":"SSC"
+        },
+        {
+          "name": "Vaishanvi Dubey",
+          "marks": "84.40%",
+          "image": "/images/toppers/2024/stud4.png",
+          "board":"SSC"
         }
       ]
     }

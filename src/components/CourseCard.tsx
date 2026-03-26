@@ -37,7 +37,7 @@ export default function CourseCard({
       bg: "bg-brand-black",
       accent: "#E53935",
       badge: "bg-primary text-white",
-      button: "bg-white text-brand-black hover:bg-gray-100",
+      button: "bg-accent-yellow text-brand-black hover:bg-accent-golden",
     },
     dark: {
       bg: "bg-[#1a1a2e]",
