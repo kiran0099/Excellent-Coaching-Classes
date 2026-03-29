@@ -7,7 +7,7 @@ export default function WhatsAppButton() {
   const [showTooltip, setShowTooltip] = useState(true);
 
   const whatsappUrl =
-    "https://wa.me/919876543210?text=Hi!%20I%20want%20to%20book%20a%20free%20demo%20class%20at%20Excellent%20Coaching%20Classes.";
+    "https://wa.me/917020516766?text=Hi!%20I%20want%20to%20book%20a%20free%20demo%20class%20at%20Excellent%20Coaching%20Classes.";
 
   return (
     <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-2">

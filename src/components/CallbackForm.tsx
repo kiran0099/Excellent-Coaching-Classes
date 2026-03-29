@@ -21,10 +21,25 @@ export default function CallbackForm() {
   } = useForm<FormData>();
 
   const onSubmit = async (data: FormData) => {
-    await fetch("/api/callback", {
+    const classLabels: Record<string, string> = {
+      "nursery": "Nursery", "lkg": "LKG", "ukg": "UKG",
+      "1": "Class 1st", "2": "Class 2nd", "3": "Class 3rd",
+      "4": "Class 4th", "5": "Class 5th", "6": "Class 6th",
+      "7": "Class 7th", "8": "Class 8th", "9": "Class 9th",
+      "10": "Class 10th", "11": "Class 11th (Commerce)", "12": "Class 12th (Commerce)",
+    };
+    const timestamp = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+    await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEETS_SCRIPT_URL!, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(data),
+      mode: "no-cors",
+      headers: { "Content-Type": "text/plain" },
+      body: JSON.stringify({
+        name: data.name,
+        phone: data.phone,
+        studentClass: classLabels[data.studentClass] ?? data.studentClass,
+        message: data.message || "",
+        timestamp,
+      }),
     });
     setSubmitted(true);
     reset();
@@ -125,8 +140,19 @@ export default function CallbackForm() {
                   className={`appearance-none ${inputClass(!!errors.studentClass)}`}
                 >
                   <option value="">Select class</option>
-                  <option value="10">Class 10th (SSC Board)</option>
-                  <option value="10cbse">Class 10th (CBSE Board)</option>
+                  <option value="nursery">Nursery</option>
+                  <option value="lkg">LKG</option>
+                  <option value="ukg">UKG</option>
+                  <option value="1">Class 1st</option>
+                  <option value="2">Class 2nd</option>
+                  <option value="3">Class 3rd</option>
+                  <option value="4">Class 4th</option>
+                  <option value="5">Class 5th</option>
+                  <option value="6">Class 6th</option>
+                  <option value="7">Class 7th</option>
+                  <option value="8">Class 8th</option>
+                  <option value="9">Class 9th</option>
+                  <option value="10">Class 10th</option>
                   <option value="11">Class 11th (Commerce)</option>
                   <option value="12">Class 12th (Commerce)</option>
                 </select>

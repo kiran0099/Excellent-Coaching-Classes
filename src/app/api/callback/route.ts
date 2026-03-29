@@ -9,8 +9,19 @@ export async function POST(req: NextRequest) {
     }
 
     const classLabels: Record<string, string> = {
-      "10": "Class 10th (SSC)",
-      "10cbse": "Class 10th (CBSE)",
+      "nursery": "Nursery",
+      "lkg": "LKG",
+      "ukg": "UKG",
+      "1": "Class 1st",
+      "2": "Class 2nd",
+      "3": "Class 3rd",
+      "4": "Class 4th",
+      "5": "Class 5th",
+      "6": "Class 6th",
+      "7": "Class 7th",
+      "8": "Class 8th",
+      "9": "Class 9th",
+      "10": "Class 10th",
       "11": "Class 11th (Commerce)",
       "12": "Class 12th (Commerce)",
     };

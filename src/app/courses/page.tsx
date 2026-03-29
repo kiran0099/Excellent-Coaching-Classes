@@ -24,11 +24,12 @@ const courses = [
     description:
       "Our 10th SSC program is laser-focused on the Maharashtra State Board syllabus. We combine concept-first teaching with rigorous mock tests and previous year paper practice to ensure every student walks into the exam hall with full confidence.",
     subjects: [
-      "Mathematics & Algebra",
-      "Science & Technology",
-      "English (Semi-English)",
-      "Social Studies (History, Geography, Civics)",
-      "Hindi / Marathi",
+      "Mathematics",
+      "Science",
+      "English",
+      "Social Science",
+      "Hindi",
+      "Marathi",
     ],
     features: [
       "Complete SSC Board syllabus coverage",
@@ -39,6 +40,8 @@ const courses = [
       "Monthly parent-teacher meetings",
       "Score improvement guarantee",
       "Individual attention in small batches",
+      "Regular performance tracking & reports",
+      "Regular parent progress updates",
     ],
     duration: "Full Academic Year",
     batchSize: "15–20 students",
@@ -56,10 +59,11 @@ const courses = [
       "Our 10th CBSE program is fully aligned with the CBSE curriculum and NCERT textbooks. We focus on building deep conceptual clarity combined with rigorous exam practice to help every student achieve their target score in the board exams.",
     subjects: [
       "Mathematics",
-      "Science (Physics, Chemistry, Biology)",
+      "Science",
       "English",
-      "Social Science (History, Geography, Civics, Economics)",
+      "Social Science",
       "Hindi",
+      "Marathi",
     ],
     features: [
       "Complete CBSE syllabus coverage",
@@ -70,6 +74,8 @@ const courses = [
       "Dedicated doubt-clearing sessions",
       "Monthly parent-teacher meetings",
       "Individual attention in small batches",
+      "Regular performance tracking & reports",
+      "Regular parent progress updates",
     ],
     duration: "Full Academic Year",
     batchSize: "15–20 students",
@@ -88,9 +94,11 @@ const courses = [
     subjects: [
       "Accounts",
       "Economics",
-      "Mathematics & Statistics (Commerce)",
-      "Organisation of Commerce",
+      "Mathematics & Statistics",
+      "Organisation of Commerce (OCM)",
       "English",
+      "Information Technology (IT)",
+      "Secretarial Practice (SP)",
     ],
     features: [
       "State Board Commerce curriculum aligned",
@@ -119,9 +127,11 @@ const courses = [
     subjects: [
       "Accounts",
       "Economics",
-      "Mathematics & Statistics (Commerce)",
-      "Organisation of Commerce & Management",
+      "Mathematics & Statistics",
+      "Organisation of Commerce (OCM)",
       "English",
+      "Information Technology (IT)",
+      "Secretarial Practice (SP)",
     ],
     features: [
       "Complete HSC Board syllabus in depth",

@@ -78,11 +78,18 @@ export default function Navbar() {
           {/* CTA + Phone */}
           <div className="hidden md:flex items-center gap-4">
             <a
-              href="tel:+919876543210"
+              href="tel:+917020516766"
               className="flex items-center gap-1.5 text-white/80 hover:text-white transition-colors font-body text-sm"
             >
               <Phone size={15} />
-              <span>+91 98765 43210</span>
+              <span>+91 7020516766</span>
+            </a>
+            <a
+              href="tel:+919518783448"
+              className="flex items-center gap-1.5 text-white/80 hover:text-white transition-colors font-body text-sm"
+            >
+              <Phone size={15} />
+              <span>+91 9518783448</span>
             </a>
             <Link
               href="/contact"
@@ -122,11 +129,18 @@ export default function Navbar() {
             ))}
             <div className="border-t border-red-900 mt-2 pt-3 flex flex-col gap-3">
               <a
-                href="tel:+919876543210"
+                href="tel:+917020516766"
                 className="flex items-center gap-2 text-white/80 font-body text-sm px-4"
               >
                 <Phone size={16} />
-                +91 98765 43210
+                +91 7020516766
+              </a>
+              <a
+                href="tel:+919518783448"
+                className="flex items-center gap-2 text-white/80 font-body text-sm px-4"
+              >
+                <Phone size={16} />
+                +91 9518783448
               </a>
               <Link
                 href="/contact"

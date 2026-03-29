@@ -200,11 +200,11 @@ export default function AboutPage() {
               <div className="relative">
                 <div className="w-full aspect-[4/5] rounded-3xl overflow-hidden shadow-xl">
                   <Image
-                    src="/images/faculty/fo1.png"
+                    src="/images/faculty/founder.png"
                     alt="Mr. Umesh Rajak — Founder & Director"
                     fill
                     sizes="(max-width: 1024px) 100vw, 50vw"
-                    className="object-cover object-[center_10%]"
+                    className="object-contain object-top"
                   />
                   {/* Gradient overlay at bottom for name card */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />

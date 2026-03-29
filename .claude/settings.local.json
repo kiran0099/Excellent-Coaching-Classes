@@ -5,7 +5,18 @@
       "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npx next build 2>&1)",
       "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npm run dev)",
       "Bash(taskkill /F /IM node.exe 2>&1)",
-      "Bash(taskkill //F //IM node.exe 2>&1)"
+      "Bash(taskkill //F //IM node.exe 2>&1)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npx vercel ls 2>&1 | head -20)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npx vercel --prod 2>&1)",
+      "Bash(mkdir -p \"D:/New Folder/Important/Excellance Classes/Website/public/images/hero\" && mkdir -p \"D:/New Folder/Important/Excellance Classes/Website/public/images/gallery\")",
+      "Bash(cd \"D:/New Folder/Important/Excellance Classes/Website\" && npx tsc --noEmit 2>&1)",
+      "Bash(cd \"D:/New Folder/Important/Excellance Classes/Website\" && npm run build 2>&1 | tail -20)",
+      "Bash(cd \"D:/New Folder/Important/Excellance Classes/Website\" && npm run dev)",
+      "Bash(cd \"D:/New Folder/Important/Excellance Classes/Website\" && npx vercel --prod 2>&1)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && echo \"https://script.google.com/macros/s/AKfycbzSvelV0as2udwJ3QMd5Z-7U_5KTwUJdCNEs3Nbt33O64I2OzxszZw8dShp2RGxLPkY/exec\" | npx vercel env add GOOGLE_SHEETS_SCRIPT_URL production 2>&1)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npm run build 2>&1)",
+      "Bash(claude --version)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && rm -rf .next && npm run build 2>&1)"
     ]
   }
 }

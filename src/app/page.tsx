@@ -29,12 +29,14 @@ const fadeUp = {
 // ── HERO SLIDES ──────────────────────────────────────────────────────────────
 const heroSlides = [
   {
-    image: "/images/hero/hero-5.jpg",
-    tag: "Annual Events · Beyond Academics",
-    heading: "Excellence",
-    highlight: "Beyond",
-    headingEnd: "The Classroom.",
-    sub: "We celebrate achievements, nurture confidence, and build character — because true excellence is all-round.",
+    image: "/images/faculty/hero-bg-founderv2.png",
+    tag: "Est. 2015 · Founded with a Vision",
+    heading: "Shaping",
+    highlight: "Futures,",
+    headingEnd: "One Student at a Time.",
+    sub: "Built on passion, driven by purpose — Excellent Coaching Classes was founded to give every student in Nalasopara the best shot at board success.",
+    cta1: { label: "Meet Our Founder", href: "/about" },
+    cta2: { label: "Enroll Now", href: "/contact" },
   },
   {
     image: "/images/hero/hero-1.jpg",
@@ -149,8 +151,8 @@ const coursePreviews = [
     standard: "10th",
     board: "SSC Maharashtra Board",
     tagline: "Master your boards with our result-proven SSC prep program.",
-    subjects: ["Maths", "Science", "English", "SST", "Hindi"],
-    features: ["Full SSC syllabus", "Mock tests + previous papers", "Doubt clearing sessions","One on one sessions"],
+    subjects: ["Mathematics", "Science", "English", "Social Science", "Hindi", "Marathi"],
+    features: ["Full SSC syllabus", "Mock tests + previous papers", "Doubt clearing sessions", "One on one sessions", "Performance tracking & reports", "Regular parent progress updates"],
     duration: "Full Academic Year",
     badge: "Most Popular",
     accentColor: "red" as const,
@@ -159,8 +161,8 @@ const coursePreviews = [
     standard: "10th",
     board: "CBSE Board",
     tagline: "Score your best in CBSE boards with structured coaching & practice.",
-    subjects: ["Maths", "Science", "English", "Social Science", "Hindi"],
-    features: ["Full CBSE syllabus", "NCERT-based teaching", "Mock tests + sample papers", "Doubt clearing sessions"],
+    subjects: ["Mathematics", "Science", "English", "Social Science", "Hindi", "Marathi"],
+    features: ["Full CBSE syllabus", "NCERT-based teaching", "Mock tests + sample papers", "Doubt clearing sessions", "Performance tracking & reports", "Regular parent progress updates"],
     duration: "Full Academic Year",
     badge: "CBSE",
     accentColor: "dark" as const,
@@ -168,8 +170,8 @@ const coursePreviews = [
   {
     standard: "11th",
     board: "HSC Commerce",
-    tagline: "Build a strong foundation for 12th boards with our Commerce program.",
-    subjects: ["Accounts", "Economics", "Maths & Stats", "Org. of Commerce", "English"],
+    tagline: "Build a rock-solid Commerce foundation for 12th boards and beyond.",
+    subjects: ["Accounts", "Economics", "Mathematics & Statistics", "Organisation of Commerce (OCM)", "English", "Information Technology (IT)", "Secretarial Practice (SP)"],
     features: ["Concept-first teaching", "NCERT + board curriculum", "Weak subject support"],
     duration: "Full Academic Year",
     badge: "Foundation",
@@ -179,7 +181,7 @@ const coursePreviews = [
     standard: "12th",
     board: "HSC Commerce",
     tagline: "Achieve your best board score with intensive coaching & strategy.",
-    subjects: ["Accounts", "Economics", "Maths & Stats", "Org. of Commerce", "English"],
+    subjects: ["Accounts", "Economics", "Mathematics & Statistics", "Organisation of Commerce (OCM)", "English", "Information Technology (IT)", "Secretarial Practice (SP)"],
     features: ["Board-focused strategy", "Intensive revision batches", "Score guarantee"],
     duration: "Full Academic Year",
     badge: "Board Champion",
@@ -475,17 +477,17 @@ function HeroSlider() {
             {/* CTAs */}
             <div className="flex flex-col sm:flex-row gap-3 mb-6 md:mb-10">
               <Link
-                href="/contact"
+                href={(slide as { cta1?: { href: string } }).cta1?.href ?? "/contact"}
                 className="btn-yellow text-sm sm:text-base px-6 py-3 sm:py-4 rounded-xl shadow-lg font-heading font-bold text-center justify-center"
               >
-                Enroll Now
+                {(slide as { cta1?: { label: string } }).cta1?.label ?? "Enroll Now"}
                 <ArrowRight size={16} />
               </Link>
               <Link
-                href="/contact"
+                href={(slide as { cta2?: { href: string } }).cta2?.href ?? "/contact"}
                 className="btn-white text-sm sm:text-base px-6 py-3 sm:py-4 rounded-xl font-heading font-bold text-center justify-center"
               >
-                Book Free Demo
+                {(slide as { cta2?: { label: string } }).cta2?.label ?? "Book Free Demo"}
               </Link>
             </div>
 

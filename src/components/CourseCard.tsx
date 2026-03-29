@@ -76,7 +76,7 @@ export default function CourseCard({
         <p className="font-heading font-semibold text-white/60 text-sm mb-2">
           {board}
         </p>
-        <p className="font-body text-white/80 text-sm mb-5 leading-relaxed">
+        <p className="font-body text-white/80 text-sm mb-5 leading-relaxed min-h-[4.5rem] line-clamp-3">
           {tagline}
         </p>
 

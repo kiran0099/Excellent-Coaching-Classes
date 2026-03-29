@@ -13,9 +13,9 @@ const contactInfo = [
   {
     icon: <Phone size={22} className="text-white" />,
     title: "Phone / WhatsApp",
-    lines: ["+91 98765 43210"],
+    lines: ["+91 7020516766", "+91 9518783448"],
     sub: "Call or WhatsApp anytime",
-    href: "tel:+919876543210",
+    href: "tel:+917020516766",
     bg: "bg-primary",
   },
   {
@@ -138,7 +138,7 @@ export default function ContactPage() {
               {/* Quick contact options */}
               <div className="space-y-4 mb-8">
                 <a
-                  href="tel:+919876543210"
+                  href="tel:+917020516766"
                   className="flex items-center gap-4 bg-brand-lightgrey rounded-2xl p-4 hover:bg-red-50 transition-colors group"
                 >
                   <div className="w-12 h-12 rounded-xl bg-primary flex items-center justify-center shrink-0">
@@ -146,13 +146,13 @@ export default function ContactPage() {
                   </div>
                   <div>
                     <p className="font-heading font-bold text-brand-black text-sm">Call Us Now</p>
-                    <p className="font-body text-primary text-sm font-semibold">+91 98765 43210</p>
+                    <p className="font-body text-primary text-sm font-semibold">+91 7020516766 / +91 9518783448</p>
                   </div>
                   <ArrowRight size={18} className="text-gray-400 ml-auto group-hover:text-primary transition-colors" />
                 </a>
 
                 <a
-                  href="https://wa.me/919876543210?text=Hi!%20I%20want%20to%20book%20a%20free%20demo%20class."
+                  href="https://wa.me/917020516766?text=Hi!%20I%20want%20to%20book%20a%20free%20demo%20class."
                   target="_blank"
                   rel="noopener noreferrer"
                   className="flex items-center gap-4 bg-brand-lightgrey rounded-2xl p-4 hover:bg-green-50 transition-colors group"
@@ -260,10 +260,10 @@ export default function ContactPage() {
               We maintain small batches for personalized attention. Secure your seat today.
             </p>
             <a
-              href="tel:+919876543210"
+              href="tel:+917020516766"
               className="btn-yellow text-base px-8 py-4 rounded-full font-heading font-bold"
             >
-              Call Now: +91 98765 43210
+              Call Now: +91 7020516766
               <Phone size={18} />
             </a>
           </motion.div>
