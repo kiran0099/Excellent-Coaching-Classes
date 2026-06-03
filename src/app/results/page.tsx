@@ -20,35 +20,36 @@ const overallStats = [
 const rankMedals = ["🥇", "🥈", "🥉"];
 const RANK_COLORS = ["#D4A017", "#A8A8B3", "#CD7F32", "#CC0000"];
 
-// Alternating photo background colors
 const PHOTO_BG = [
-  "#B71C1C", // deep red
-  "#1a237e", // deep blue
-  "#1b5e20", // deep green
-  "#4a148c", // deep purple
+  "#B71C1C",
+  "#1a237e",
+  "#1b5e20",
+  "#4a148c",
 ];
 
 interface Topper {
   name: string;
   marks: string;
   image: string;
-  board: string;
 }
 
 interface YearEntry {
   year: string;
-  students: Topper[];
+  ssc: Topper[];
+  hsc?: Topper[];
 }
+
+type TabType = "ssc" | "hsc";
 
 export default function ResultsPage() {
   const [years, setYears] = useState<YearEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [activeTab, setActiveTab] = useState<TabType>("ssc");
 
   useEffect(() => {
     fetch("/data/toppersdata.json")
       .then((r) => r.json())
       .then((data) => {
-        // Sort descending by year
         const sorted: YearEntry[] = [...data.years].sort(
           (a, b) => Number(b.year) - Number(a.year)
         );
@@ -117,99 +118,142 @@ export default function ResultsPage() {
       {/* ── YEAR-WISE RESULTS ─────────────────────────────── */}
       <section className="section-pad bg-brand-lightgrey">
         <div className="container-pad">
+
+          {/* SSC / HSC Tab Bar */}
+          <div className="flex justify-center mb-10">
+            <div className="inline-flex bg-white rounded-2xl p-1.5 shadow border border-gray-200 gap-1">
+              {(["ssc", "hsc"] as TabType[]).map((tab) => (
+                <button
+                  key={tab}
+                  onClick={() => setActiveTab(tab)}
+                  className={`relative px-8 py-2.5 rounded-xl font-heading font-bold text-sm transition-all duration-200 ${
+                    activeTab === tab
+                      ? "bg-primary text-white shadow-md"
+                      : "text-brand-grey hover:text-brand-black"
+                  }`}
+                >
+                  {tab === "ssc" ? "SSC (10th)" : "HSC (12th)"}
+                </button>
+              ))}
+            </div>
+          </div>
+
           {loading ? (
             <div className="flex justify-center items-center h-48">
               <div className="w-10 h-10 rounded-full border-2 border-primary/30 border-t-primary animate-spin" />
             </div>
-          ) : (
-            years.map((entry, yearIndex) => (
-              <motion.div
-                key={entry.year}
-                className="mb-16 last:mb-0"
-                variants={fadeUp}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true }}
-                transition={{ delay: yearIndex * 0.1 }}
-              >
-                {/* Year Header */}
-                <div className="flex items-center gap-4 mb-8">
-                  <div className="flex items-center gap-3">
-                    <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
-                      <Trophy size={20} className="text-accent-yellow" />
+          ) : (() => {
+            const visibleYears = years.filter((entry) =>
+              activeTab === "ssc"
+                ? entry.ssc?.length > 0
+                : (entry.hsc?.length ?? 0) > 0
+            );
+
+            if (visibleYears.length === 0) {
+              return (
+                <div className="flex flex-col items-center justify-center py-20 text-center">
+                  <Trophy size={48} className="text-gray-300 mb-4" />
+                  <p className="font-heading font-bold text-brand-black text-xl mb-2">
+                    No HSC Results Yet
+                  </p>
+                  <p className="font-body text-brand-grey text-sm max-w-xs">
+                    HSC results have started from 2026. Check back after the results are declared.
+                  </p>
+                </div>
+              );
+            }
+
+            return visibleYears.map((entry, yearIndex) => {
+              const students = activeTab === "ssc" ? entry.ssc : entry.hsc ?? [];
+              return (
+                <motion.div
+                  key={`${entry.year}-${activeTab}`}
+                  className="mb-16 last:mb-0"
+                  variants={fadeUp}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true }}
+                  transition={{ delay: yearIndex * 0.1 }}
+                >
+                  {/* Year Header */}
+                  <div className="flex items-center gap-4 mb-8">
+                    <div className="flex items-center gap-3">
+                      <div className="w-12 h-12 rounded-2xl bg-primary flex items-center justify-center">
+                        <Trophy size={20} className="text-accent-yellow" />
+                      </div>
+                      <div>
+                        <h2 className="font-heading font-black text-3xl text-brand-black">
+                          Results {entry.year}
+                        </h2>
+                        <p className="font-body text-brand-grey text-sm">
+                          {activeTab === "ssc" ? "SSC (10th)" : "HSC (12th)"} Board Toppers &amp; Achievers
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h2 className="font-heading font-black text-3xl text-brand-black">
-                        Results {entry.year}
-                      </h2>
-                      <p className="font-body text-brand-grey text-sm">
-                        Board Exam Toppers &amp; Achievers
-                      </p>
-                    </div>
+                    <div className="h-px flex-1 bg-gray-200 hidden md:block" />
+                    <span className="font-body text-brand-grey text-sm hidden md:block">
+                      {students.length} achievers
+                    </span>
                   </div>
-                  <div className="h-px flex-1 bg-gray-200 hidden md:block" />
-                  <span className="font-body text-brand-grey text-sm hidden md:block">
-                    {entry.students.length} achievers
-                  </span>
-                </div>
 
-                {/* Toppers grid */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
-                  {entry.students.map((student, i) => {
-                    const color = RANK_COLORS[i] ?? RANK_COLORS[RANK_COLORS.length - 1];
-                    const photoBg = PHOTO_BG[i % PHOTO_BG.length];
-                    return (
-                      <motion.article
-                        key={student.name}
-                        className="relative bg-[#2b2d42] rounded-2xl overflow-hidden shadow-lg border-2"
-                        style={{ borderColor: color + "66" }}
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: i * 0.1, duration: 0.5 }}
-                        whileHover={{ y: -4 }}
-                      >
-                        {/* Rank badge */}
-                        <div
-                          className="absolute top-3 left-3 z-10 w-8 h-8 rounded-full flex items-center justify-center font-heading font-black text-xs shadow"
-                          style={{ background: color, color: "#111" }}
+                  {/* Toppers grid */}
+                  <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-6">
+                    {students.map((student, i) => {
+                      const color = RANK_COLORS[i] ?? RANK_COLORS[RANK_COLORS.length - 1];
+                      const photoBg = PHOTO_BG[i % PHOTO_BG.length];
+                      return (
+                        <motion.article
+                          key={student.name}
+                          className="relative bg-[#2b2d42] rounded-2xl overflow-hidden shadow-lg border-2"
+                          style={{ borderColor: color + "66" }}
+                          initial={{ opacity: 0, y: 30 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: i * 0.1, duration: 0.5 }}
+                          whileHover={{ y: -4 }}
                         >
-                          {i < 3 ? rankMedals[i] : `${i + 1}`}
-                        </div>
-
-                        {/* Photo */}
-                        <div className="relative w-full aspect-square" style={{ backgroundColor: photoBg }}>
-                          <Image
-                            src={student.image}
-                            alt={student.name}
-                            fill
-                            className="object-cover object-top"
-                            sizes="(max-width: 640px) 50vw, 25vw"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
-                        </div>
-
-                        <div className="p-4">
+                          {/* Rank badge */}
                           <div
-                            className="font-heading font-black text-3xl leading-none mb-1"
-                            style={{ color }}
+                            className="absolute top-3 left-3 z-10 w-8 h-8 rounded-full flex items-center justify-center font-heading font-black text-xs shadow"
+                            style={{ background: color, color: "#111" }}
                           >
-                            {student.marks}
+                            {i < 3 ? rankMedals[i] : `${i + 1}`}
                           </div>
-                          <p className="font-heading font-bold text-white text-sm leading-tight mb-1">
-                            {student.name}
-                          </p>
-                          <span className="font-body text-xs bg-white/10 text-white/70 px-2 py-0.5 rounded-full">
-                            {student.board}
-                          </span>
-                        </div>
-                      </motion.article>
-                    );
-                  })}
-                </div>
-              </motion.div>
-            ))
-          )}
+
+                          {/* Photo */}
+                          <div className="relative w-full aspect-square" style={{ backgroundColor: photoBg }}>
+                            <Image
+                              src={student.image}
+                              alt={student.name}
+                              fill
+                              className="object-cover object-top"
+                              sizes="(max-width: 640px) 50vw, 25vw"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                          </div>
+
+                          <div className="p-4">
+                            <div
+                              className="font-heading font-black text-3xl leading-none mb-1"
+                              style={{ color }}
+                            >
+                              {student.marks}
+                            </div>
+                            <p className="font-heading font-bold text-white text-sm leading-tight mb-1">
+                              {student.name}
+                            </p>
+                            <span className="font-body text-xs bg-white/10 text-white/70 px-2 py-0.5 rounded-full">
+                              {activeTab === "ssc" ? "SSC" : "HSC"}
+                            </span>
+                          </div>
+                        </motion.article>
+                      );
+                    })}
+                  </div>
+                </motion.div>
+              );
+            });
+          })()}
         </div>
       </section>
 

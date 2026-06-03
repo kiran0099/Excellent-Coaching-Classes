@@ -1,89 +1,124 @@
 {
   "years": [
     {
+      "year": "2026",
+      "ssc": [
+        {
+          "name": "Atharva Rane",
+          "marks": "86.00%",
+          "image": "/images/toppers/2026/ssc/top1.png"
+        },
+        {
+          "name": "Sumit Yadav",
+          "marks": "85.40%",
+          "image": "/images/toppers/2026/ssc/top2.png"
+        },
+        {
+          "name": "Shreyas Salunkhe",
+          "marks": "83.60%",
+          "image": "/images/toppers/2026/ssc/top3.png"
+        },
+        {
+          "name": "Amrita Gupta",
+          "marks": "83.00%",
+          "image": "/images/toppers/2026/ssc/top4.png"
+        }
+      ],
+      "hsc": [
+        {
+          "name": "Priya Yadav",
+          "marks": "81.67%",
+          "image": "/images/toppers/2026/hsc/top1.png"
+        },
+        {
+          "name": "Sachin Rajbhar ",
+          "marks": "75.33%",
+          "image": "/images/toppers/2026/hsc/top2.png"
+        },
+        {
+          "name": "Anisha Show",
+          "marks": "72.33%",
+          "image": "/images/toppers/2026/hsc/top3.png"
+        },
+        {
+          "name": "Naveen Vishwakarma",
+          "marks": "71.17%",
+          "image": "/images/toppers/2026/hsc/top4.png"
+        }
+      ]
+    },
+    {
       "year": "2025",
-      "students": [
+      "ssc": [
         {
           "name": "Harshit Sawant",
           "marks": "95.40%",
-          "image": "/images/toppers/2025/stud1.png",
-          "board":"SSC"
+          "image": "/images/toppers/2025/stud1.png"
         },
         {
           "name": "Vishwa Uphale",
           "marks": "89.20%",
-          "image": "/images/toppers/2025/stud2.png",
-          "board":"SSC"
+          "image": "/images/toppers/2025/stud2.png"
         },
         {
           "name": "Saurabh Gupta",
           "marks": "87.60%",
-          "image": "/images/toppers/2025/stud3.png",
-          "board":"SSC"
+          "image": "/images/toppers/2025/stud3.png"
         },
         {
           "name": "Vaishnavi Yadav",
           "marks": "87.00%",
-          "image": "/images/toppers/2025/stud4.png",
-          "board":"SSC"
+          "image": "/images/toppers/2025/stud4.png"
         }
       ]
     },
     {
       "year": "2024",
-      "students": [
+      "ssc": [
         {
           "name": "Shagun Gupta",
           "marks": "93.40%",
-          "image": "/images/toppers/2024/stud1.png",
-          "board":"SSC"
+          "image": "/images/toppers/2024/stud1.png"
         },
         {
           "name": "Priya Yadav",
           "marks": "90.20%",
-          "image": "/images/toppers/2024/stud2.png",
-          "board":"SSC"
+          "image": "/images/toppers/2024/stud2.png"
         },
         {
           "name": "Vishal Dixit",
           "marks": "85.60%",
-          "image": "/images/toppers/2024/stud3.png",
-          "board":"SSC"
+          "image": "/images/toppers/2024/stud3.png"
         },
         {
           "name": "Vanisha Gupta",
           "marks": "85.00%",
-          "image": "/images/toppers/2024/stud4.png",
-          "board":"SSC"
+          "image": "/images/toppers/2024/stud4.png"
         }
       ]
     },
     {
       "year": "2023",
-      "students": [
+      "ssc": [
         {
           "name": "Nishita Shetty",
           "marks": "94.00%",
-          "image": "/images/toppers/2024/stud3.png",
-          "board":"SSC"
+          "image": "/images/toppers/2024/stud3.png"
         },
         {
           "name": "Vinayak Gupta",
           "marks": "88.00%",
-          "image": "/images/toppers/2024/stud2.png",
-          "board":"SSC"
+          "image": "/images/toppers/2024/stud2.png"
         },
         {
           "name": "Kahish Gupta",
           "marks": "84.80%",
-          "image": "/images/toppers/2024/stud1.png",
-          "board":"SSC"
+          "image": "/images/toppers/2024/stud1.png"
         },
         {
           "name": "Vaishanvi Dubey",
           "marks": "84.40%",
-          "image": "/images/toppers/2024/stud4.png",
-          "board":"SSC"
+          "image": "/images/toppers/2024/stud4.png"
         }
       ]
     }

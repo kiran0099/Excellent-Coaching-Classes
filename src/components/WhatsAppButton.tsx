@@ -4,7 +4,7 @@ import { useState } from "react";
 import { X, MessageCircle } from "lucide-react";
 
 export default function WhatsAppButton() {
-  const [showTooltip, setShowTooltip] = useState(true);
+  const [showTooltip, setShowTooltip] = useState(false);
 
   const whatsappUrl =
     "https://wa.me/917020516766?text=Hi!%20I%20want%20to%20book%20a%20free%20demo%20class%20at%20Excellent%20Coaching%20Classes.";
