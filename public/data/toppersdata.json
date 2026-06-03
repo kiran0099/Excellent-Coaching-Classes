@@ -78,22 +78,42 @@
         {
           "name": "Shagun Gupta",
           "marks": "93.40%",
+<<<<<<< HEAD
           "image": "/images/toppers/2024/stud1.png"
+=======
+          "image": "/images/toppers/2024/stud4.png",
+          "board":"SSC"
+>>>>>>> 2d1a0189826ecd419319c5c334a510d96518b250
         },
         {
           "name": "Priya Yadav",
           "marks": "90.20%",
+<<<<<<< HEAD
           "image": "/images/toppers/2024/stud2.png"
+=======
+          "image": "/images/toppers/2024/stud3.png",
+          "board":"SSC"
+>>>>>>> 2d1a0189826ecd419319c5c334a510d96518b250
         },
         {
           "name": "Vishal Dixit",
           "marks": "85.60%",
+<<<<<<< HEAD
           "image": "/images/toppers/2024/stud3.png"
+=======
+          "image": "/images/toppers/2024/stud2.png",
+          "board":"SSC"
+>>>>>>> 2d1a0189826ecd419319c5c334a510d96518b250
         },
         {
           "name": "Vanisha Gupta",
           "marks": "85.00%",
+<<<<<<< HEAD
           "image": "/images/toppers/2024/stud4.png"
+=======
+          "image": "/images/toppers/2024/stud1.png",
+          "board":"SSC"
+>>>>>>> 2d1a0189826ecd419319c5c334a510d96518b250
         }
       ]
     },
@@ -103,22 +123,42 @@
         {
           "name": "Nishita Shetty",
           "marks": "94.00%",
+<<<<<<< HEAD
           "image": "/images/toppers/2024/stud3.png"
+=======
+          "image": "/images/toppers/2023/stud3.png",
+          "board":"SSC"
+>>>>>>> 2d1a0189826ecd419319c5c334a510d96518b250
         },
         {
           "name": "Vinayak Gupta",
           "marks": "88.00%",
+<<<<<<< HEAD
           "image": "/images/toppers/2024/stud2.png"
+=======
+          "image": "/images/toppers/2023/stud2.png",
+          "board":"SSC"
+>>>>>>> 2d1a0189826ecd419319c5c334a510d96518b250
         },
         {
-          "name": "Kahish Gupta",
+          "name": "Kashish Gupta",
           "marks": "84.80%",
+<<<<<<< HEAD
           "image": "/images/toppers/2024/stud1.png"
+=======
+          "image": "/images/toppers/2023/stud1.png",
+          "board":"SSC"
+>>>>>>> 2d1a0189826ecd419319c5c334a510d96518b250
         },
         {
           "name": "Vaishanvi Dubey",
           "marks": "84.40%",
+<<<<<<< HEAD
           "image": "/images/toppers/2024/stud4.png"
+=======
+          "image": "/images/toppers/2023/stud4.png",
+          "board":"SSC"
+>>>>>>> 2d1a0189826ecd419319c5c334a510d96518b250
         }
       ]
     }

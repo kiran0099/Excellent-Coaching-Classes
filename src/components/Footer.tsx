@@ -15,9 +15,9 @@ export default function Footer() {
               We Ensure All-Round Excellence
             </p>
             <p className="font-body text-gray-400 text-sm leading-relaxed mb-6 max-w-sm">
-              Providing quality education and personalized coaching for 10th,
-              11th, and 12th standard students. Building bright futures through
-              academic excellence and holistic student development.
+              Providing quality education and personalized coaching from Nursery
+              to 12th Commerce. Building bright futures through academic
+              excellence and holistic student development.
             </p>
             <Link
               href="/contact"
