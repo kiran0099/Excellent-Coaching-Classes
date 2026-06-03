@@ -20,6 +20,7 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import CourseCard from "@/components/CourseCard";
+import Testimonials from "@/components/Testimonials";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -909,6 +910,9 @@ export default function HomePage() {
           </div>
         </div>
       </section>
+
+      {/* ── TESTIMONIALS ──────────────────────────────────── */}
+      <Testimonials />
 
       {/* ── CTA BANNER ────────────────────────────────────── */}
       <section className="relative py-24 overflow-hidden">

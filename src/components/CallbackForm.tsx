@@ -1,5 +1,6 @@
 "use client";
 import { useForm } from "react-hook-form";
+import { sanitizeName, sanitizePhone, sanitizeText } from "@/lib/sanitize";
 import { motion } from "framer-motion";
 import { Send, CheckCircle, Phone, User, GraduationCap, MessageSquare } from "lucide-react";
 import { useState } from "react";
@@ -29,15 +30,18 @@ export default function CallbackForm() {
       "10": "Class 10th", "11": "Class 11th (Commerce)", "12": "Class 12th (Commerce)",
     };
     const timestamp = new Date().toLocaleString("en-IN", { timeZone: "Asia/Kolkata" });
+    const cleanName = sanitizeName(data.name);
+    const cleanPhone = sanitizePhone(data.phone);
+    const cleanMessage = sanitizeText(data.message ?? "", 300);
     await fetch(process.env.NEXT_PUBLIC_GOOGLE_SHEETS_SCRIPT_URL!, {
       method: "POST",
       mode: "no-cors",
       headers: { "Content-Type": "text/plain" },
       body: JSON.stringify({
-        name: data.name,
-        phone: data.phone,
+        name: cleanName,
+        phone: cleanPhone,
         studentClass: classLabels[data.studentClass] ?? data.studentClass,
-        message: data.message || "",
+        message: cleanMessage,
         timestamp,
       }),
     });

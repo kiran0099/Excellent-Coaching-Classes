@@ -1,6 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
 import { Target, Eye, CheckCircle, Award, Quote, Users, TrendingUp, Star, BookOpen, Heart } from "lucide-react";
+import Testimonials from "@/components/Testimonials";
 import Link from "next/link";
 import Image from "next/image";
 import { useState } from "react";
@@ -560,6 +561,9 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
+
+      {/* ── TESTIMONIALS ─────────────────────────────────── */}
+      <Testimonials />
 
       {/* ── CTA ──────────────────────────────────────────── */}
       <section className="py-20 hero-gradient">

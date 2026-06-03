@@ -21,7 +21,17 @@
       "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npx tsc --noEmit 2>&1 | head -40)",
       "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npx tsc --noEmit 2>&1)",
       "Bash(taskkill /F /IM node.exe)",
-      "Bash(cmd /c \"taskkill /F /IM node.exe\")"
+      "Bash(cmd /c \"taskkill /F /IM node.exe\")",
+      "Bash(curl -s \"https://opensheet.elk.sh/1tNxaWtaSMUJwA7FHnTT0y249ZUy6XC2NT-4e8Wbj6RQ/Sheet1\" 2>&1 | head -c 1000)",
+      "Bash(curl -s \"https://opensheet.elk.sh/1tNxaWtaSMUJwA7FHnTT0y249ZUy6XC2NT-4e8Wbj6RQ/Sheet1\" 2>&1)",
+      "Bash(grep -r \"postinstall\\\\|preinstall\\\\|prepublish\" \"D:/New Folder/Important/Excellance Classes/Website\" --include=\"*.json\" 2>/dev/null | head -20)",
+      "Bash(grep -r \"script\\\\|google-analytics\\\\|gtag\\\\|segment\\\\|mixpanel\\\\|intercom\" \"D:/New Folder/Important/Excellance Classes/Website/src\" --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.jsx\" --include=\"*.js\" 2>/dev/null | grep -v node_modules)",
+      "Bash(grep -r \"https://\\\\|http://\" \"D:/New Folder/Important/Excellance Classes/Website/src\" --include=\"*.tsx\" --include=\"*.ts\" --include=\"*.jsx\" --include=\"*.js\" 2>/dev/null | grep -v \"google.com\\\\|wa.me\\\\|opensheet\\\\|callmebot\")",
+      "Bash(find \"D:/New Folder/Important/Excellance Classes/Website/src\" -type f -name \"*.tsx\" -o -name \"*.ts\" | xargs wc -l 2>/dev/null | tail -1)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npm run dev -- -p 3001)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && powershell -Command \"Compress-Archive -Path 'out\\\\*' -DestinationPath 'out.zip' -Force\" && echo \"ZIP created successfully\")",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npm run dev 2>&1)",
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && find out -name \"*.txt\" -delete && echo \"Removed .txt files:\" && find out -name \"*.txt\" | wc -l)"
     ]
   }
 }
