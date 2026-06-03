@@ -31,7 +31,8 @@
       "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npm run dev -- -p 3001)",
       "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && powershell -Command \"Compress-Archive -Path 'out\\\\*' -DestinationPath 'out.zip' -Force\" && echo \"ZIP created successfully\")",
       "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && npm run dev 2>&1)",
-      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && find out -name \"*.txt\" -delete && echo \"Removed .txt files:\" && find out -name \"*.txt\" | wc -l)"
+      "Bash(cd \"D:\\\\New Folder\\\\Important\\\\Excellance Classes\\\\Website\" && find out -name \"*.txt\" -delete && echo \"Removed .txt files:\" && find out -name \"*.txt\" | wc -l)",
+      "Bash(git config:*)"
     ]
   }
 }
