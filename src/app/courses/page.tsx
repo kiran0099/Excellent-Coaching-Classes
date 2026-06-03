@@ -203,7 +203,7 @@ export default function CoursesPage() {
               </span>
             </h1>
             <p className="font-body text-white/75 text-lg max-w-xl mx-auto">
-              Specialized programs for 10th, 11th &amp; 12th students — designed with one goal in mind: your best board score.
+              Specialized programs from Nursery to 12th Commerce — designed with one goal in mind: your best board score.
             </p>
           </motion.div>
         </div>

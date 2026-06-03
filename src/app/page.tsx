@@ -35,6 +35,7 @@ const heroSlides = [
     highlight: "Futures,",
     headingEnd: "One Student at a Time.",
     sub: "Built on passion, driven by purpose — Excellent Coaching Classes was founded to give every student in Nalasopara the best shot at board success.",
+    founderLabel: "Meet the Founder",
     cta1: { label: "Meet Our Founder", href: "/about" },
     cta2: { label: "Enroll Now", href: "/contact" },
   },
@@ -44,7 +45,7 @@ const heroSlides = [
     heading: "We Ensure",
     highlight: "All-Round",
     headingEnd: "Excellence.",
-    sub: "Nalasopara East's most trusted coaching institute for 10th, 11th & 12th students. Expert faculty, small batches, and a proven track record of top results.",
+    sub: "Nalasopara East's most trusted coaching institute from Nursery to 12th Commerce. Expert faculty, small batches, and a proven track record of top results.",
   },
   {
     image: "/images/hero/hero-2.jpg",
@@ -399,8 +400,9 @@ function HeroSlider() {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden pt-16 md:pt-20">
-      {/* ── Background image with animated swap ── */}
+    <section className="relative min-h-screen flex flex-col overflow-hidden pt-16 md:pt-20">
+
+      {/* ── Background image ── */}
       <AnimatePresence initial={false}>
         <motion.div
           key={`bg-${current}`}
@@ -411,16 +413,27 @@ function HeroSlider() {
         >
           <Image
             src={slide.image}
-            alt="ECC campus"
+            alt="ECC hero"
             fill
-            className="object-cover object-center"
+            className="object-cover"
+            style={current === 0 ? { objectPosition: "90% center" } : { objectPosition: "center" }}
             priority={current === 0}
             sizes="100vw"
           />
-          {/* Dark overlay — stronger on mobile (full cover), subtle gradient on desktop */}
-          <div className="absolute inset-0 bg-black/60 md:bg-transparent" />
+
+          {/* Slide 0 mobile: semi-transparent overlay so founder shows through text */}
+          {current === 0 && (
+            <div className="absolute inset-0 md:hidden bg-black/50" />
+          )}
+
+          {/* Other slides mobile overlay */}
+          {current !== 0 && (
+            <div className="absolute inset-0 bg-black/60 md:bg-transparent" />
+          )}
+
+          {/* Desktop overlay (all slides) */}
           <div className="absolute inset-0 hidden md:block bg-gradient-to-r from-black/80 via-black/55 to-black/30" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
         </motion.div>
       </AnimatePresence>
 
@@ -428,14 +441,13 @@ function HeroSlider() {
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
         style={{
-          backgroundImage:
-            "linear-gradient(#fff 1px, transparent 1px), linear-gradient(90deg, #fff 1px, transparent 1px)",
+          backgroundImage: "linear-gradient(#fff 1px,transparent 1px),linear-gradient(90deg,#fff 1px,transparent 1px)",
           backgroundSize: "50px 50px",
         }}
       />
 
       {/* ── Content ── */}
-      <div className="relative container-pad w-full py-16 md:py-28">
+      <div className="relative container-pad w-full py-16 md:py-28 my-auto">
         <AnimatePresence mode="wait" custom={direction}>
           <motion.div
             key={`content-${current}`}
@@ -455,18 +467,10 @@ function HeroSlider() {
             {/* Headline */}
             <h1 className="font-heading font-black text-[2rem] sm:text-4xl md:text-6xl lg:text-7xl text-white leading-[1.1] mb-3 md:mb-4">
               {slide.heading}{" "}
-              <span
-                style={{
-                  background: "linear-gradient(90deg, #FFD600, #FFC107)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
+              <span style={{ background: "linear-gradient(90deg,#FFD600,#FFC107)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", backgroundClip: "text" }}>
                 {slide.highlight}
               </span>
-              <br />
-              {slide.headingEnd}
+              <br />{slide.headingEnd}
             </h1>
 
             {/* Sub */}
@@ -475,7 +479,7 @@ function HeroSlider() {
             </p>
 
             {/* CTAs */}
-            <div className="flex flex-col sm:flex-row gap-3 mb-6 md:mb-10">
+            <div className="flex flex-col sm:flex-row gap-3 mb-4 md:mb-10">
               <Link
                 href={(slide as { cta1?: { href: string } }).cta1?.href ?? "/contact"}
                 className="btn-yellow text-sm sm:text-base px-6 py-3 sm:py-4 rounded-xl shadow-lg font-heading font-bold text-center justify-center"
@@ -492,7 +496,7 @@ function HeroSlider() {
             </div>
 
             {/* Trust badges */}
-            <div className="flex flex-col sm:flex-row flex-wrap gap-y-2 gap-x-5">
+            <div className="flex flex-wrap gap-y-2 gap-x-4 sm:gap-x-5">
               {[
                 { text: "1000+ Students", full: "1000+ Students Mentored" },
                 { text: "100% Pass Rate", full: "100% Board Pass Rate" },
@@ -511,19 +515,33 @@ function HeroSlider() {
         </AnimatePresence>
       </div>
 
-      {/* ── Prev / Next arrows — hidden on mobile, visible md+ ── */}
-      <button
-        onClick={prev}
-        aria-label="Previous slide"
-        className="hidden md:flex absolute left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 items-center justify-center text-white transition-all duration-200"
-      >
+      {/* ── Meet the Founder label — slide 0 (mobile: bottom-center, desktop: bottom-right) ── */}
+      {current === 0 && (
+        <>
+          {/* Mobile */}
+          <div className="md:hidden absolute bottom-16 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-1.5 pointer-events-none">
+            <div className="flex items-center gap-2 bg-black/40 backdrop-blur-sm border border-white/20 px-4 py-2 rounded-full">
+              <span className="block w-4 h-[2px] rounded-full" style={{ background: "#FFD600" }} />
+              <span className="font-body text-white text-sm italic tracking-wide">Meet the Founder</span>
+            </div>
+            <span className="block w-px h-6 bg-white/40" />
+          </div>
+          {/* Desktop */}
+          <div className="hidden md:flex absolute right-[12%] lg:right-[16%] bottom-[12%] z-10 flex-col items-center gap-2 pointer-events-none">
+            <div className="flex items-center gap-3 bg-black/30 backdrop-blur-sm border border-white/20 px-6 py-3 rounded-full">
+              <span className="block w-5 h-[2px] rounded-full" style={{ background: "#FFD600" }} />
+              <span className="font-body text-white text-base italic tracking-wide">Meet the Founder</span>
+            </div>
+            <span className="block w-px h-10 bg-white/30" />
+          </div>
+        </>
+      )}
+
+      {/* ── Prev / Next arrows — desktop only ── */}
+      <button onClick={prev} aria-label="Previous slide" className="hidden md:flex absolute left-6 lg:left-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 items-center justify-center text-white transition-all duration-200">
         <ChevronLeft size={22} />
       </button>
-      <button
-        onClick={next}
-        aria-label="Next slide"
-        className="hidden md:flex absolute right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 items-center justify-center text-white transition-all duration-200"
-      >
+      <button onClick={next} aria-label="Next slide" className="hidden md:flex absolute right-6 lg:right-8 top-1/2 -translate-y-1/2 z-20 w-11 h-11 rounded-full bg-white/10 hover:bg-white/25 border border-white/20 items-center justify-center text-white transition-all duration-200">
         <ChevronRight size={22} />
       </button>
 
@@ -535,18 +553,17 @@ function HeroSlider() {
             onClick={() => goTo(i)}
             aria-label={`Go to slide ${i + 1}`}
             className={`transition-all duration-300 rounded-full ${
-              i === current
-                ? "w-7 h-2 bg-accent-yellow"
-                : "w-2 h-2 bg-white/40 hover:bg-white/70"
+              i === current ? "w-7 h-2 bg-accent-yellow" : "w-2 h-2 bg-white/40 hover:bg-white/70"
             }`}
           />
         ))}
       </div>
 
-      {/* ── Slide counter — md+ only ── */}
+      {/* ── Slide counter — desktop only ── */}
       <div className="hidden md:block absolute bottom-12 right-8 z-20 text-white/50 font-heading font-semibold text-sm">
         {String(current + 1).padStart(2, "0")} / {String(heroSlides.length).padStart(2, "0")}
       </div>
+
     </section>
   );
 }
@@ -756,13 +773,13 @@ export default function HomePage() {
               <span className="text-gradient-red">Board Success</span>
             </h2>
             <p className="section-subheading font-body text-brand-grey text-lg max-w-2xl mx-auto">
-              Specialized programs for 10th, 11th &amp; 12th students — designed to maximize board scores.
+              Specialized programs from Nursery to 12th Commerce — designed to maximize board scores.
             </p>
           </motion.div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
             {coursePreviews.map((course, i) => (
-              <CourseCard key={course.standard} {...course} delay={i * 0.15} />
+              <CourseCard key={`${course.standard}-${course.board}`} {...course} delay={i * 0.15} />
             ))}
           </div>
 
@@ -771,6 +788,49 @@ export default function HomePage() {
               View All Course Details
               <ArrowRight size={16} />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ── OFFER BANNER ──────────────────────────────────── */}
+      <section className="relative overflow-hidden">
+        {/* Mobile image */}
+        <div className="md:hidden relative w-full">
+          <Image
+            src="/images/discount-mobile-final.png"
+            alt="10% off on tuition fees"
+            width={820}
+            height={1456}
+            className="w-full h-auto"
+          />
+          {/* Overlay CTA buttons */}
+          <div className="absolute bottom-[12%] left-0 right-0 px-6 flex flex-col gap-3">
+            <Link href="/contact" className="w-full flex items-center justify-center gap-2 bg-[#FFD600] hover:bg-yellow-400 text-black font-heading font-bold text-sm py-3.5 rounded-xl shadow-lg transition-colors duration-200">
+              Enquire Now <ArrowRight size={16} />
+            </Link>
+            <a href="tel:+917020516766" className="w-full flex items-center justify-center gap-2 bg-transparent hover:bg-white/10 text-white font-heading font-bold text-sm py-3.5 rounded-xl border-2 border-white/70 transition-colors duration-200">
+              📞 Call Us Now
+            </a>
+          </div>
+        </div>
+
+        {/* Desktop image */}
+        <div className="hidden md:relative md:block w-full">
+          <Image
+            src="/images/discount-desktop-final.png"
+            alt="10% off on tuition fees"
+            width={1440}
+            height={810}
+            className="w-full h-auto"
+          />
+          {/* Overlay CTA buttons */}
+          <div className="absolute bottom-[16%] left-[5%] flex gap-4">
+            <Link href="/contact" className="flex items-center gap-2 bg-[#FFD600] hover:bg-yellow-400 text-black font-heading font-bold text-sm px-7 py-3.5 rounded-xl shadow-lg transition-colors duration-200">
+              Enquire Now <ArrowRight size={16} />
+            </Link>
+            <a href="tel:+917020516766" className="flex items-center gap-2 bg-transparent hover:bg-white/10 text-white font-heading font-bold text-sm px-7 py-3.5 rounded-xl border-2 border-white/70 transition-colors duration-200">
+              📞 Call Us
+            </a>
           </div>
         </div>
       </section>

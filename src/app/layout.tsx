@@ -4,6 +4,7 @@ import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
+import OfferPopup from "@/components/OfferPopup";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,12 +23,12 @@ const roboto = Roboto({
 export const metadata: Metadata = {
   title: "Excellent Coaching Classes | We Ensure All-Round Excellence",
   description:
-    "Top-rated coaching institute for 10th, 11th & 12th standard students in Nalasopara East, Mumbai. Expert faculty, proven results, and personalized attention.",
+    "Top-rated coaching institute from Nursery to 12th Commerce in Nalasopara East, Mumbai. Expert faculty, proven results, and personalized attention.",
   keywords:
-    "coaching classes Nalasopara, 10th coaching Mumbai, 11th 12th tuition Nalasopara East, board exam preparation, SSC HSC coaching",
+    "coaching classes Nalasopara, nursery to 12th coaching Mumbai, 11th 12th commerce tuition Nalasopara East, board exam preparation, SSC HSC coaching",
   openGraph: {
     title: "Excellent Coaching Classes | Nalasopara East",
-    description: "We Ensure All-Round Excellence — Top coaching for 10th, 11th & 12th in Nalasopara East, Mumbai.",
+    description: "We Ensure All-Round Excellence — Top coaching from Nursery to 12th Commerce in Nalasopara East, Mumbai.",
     type: "website",
     locale: "en_IN",
   },
@@ -45,6 +46,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
         <WhatsAppButton />
+        <OfferPopup />
       </body>
     </html>
   );
